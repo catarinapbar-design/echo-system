@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>VITALE // CLASSIFICATO</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    padding: 40px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+input {
+    background: #000;
+    border: 1px solid #477;
+    color: #00ff66;
+    padding: 10px;
+    width: 250px;
+    font-family: "Courier New", monospace;
+}
+
+button {
+    background: #000;
+    border: 1px solid #477;
+    color: #00ff66;
+    padding: 10px 15px;
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: #00ff66;
+}
+
+.file {
+    border: 1px solid #477;
+    padding: 15px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.file:hover {
+    border-color: #00ff66;
+}
+
+.dim {
+    color: #477;
+}
+
+.warning {
+    color: #777;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    margin-top: 30px;
+    color: #00ff66;
+    cursor: pointer;
+}
+
+.redacted {
+    color: #333;
+}
+
+.secret {
+    border-color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div>VITALE // CLASSIFICATO</div>
+
+<div class="dim">
+------------------------------------------
+</div>
+
+<br>
+
+<div>> ACCESSO LIVELLO: █████</div>
+<div>> ARCHIVIO: 006</div>
+<div>> STATO: PROTETTO</div>
+
+<br>
+
+<div id="login">
+
+    <div class="warning">
+        > ACCESSO NEGATO
+    </div>
+
+    <br>
+
+    <div>
+        PRIMA DEI TEST.
+    </div>
+
+    <div>
+        PRIMA DEI SOGGETTI.
+    </div>
+
+    <div>
+        PRIMA DI VALDOMBRA.
+    </div>
+
+    <br>
+
+    <div>
+        CERCA LA DATA IN CUI TUTTO È INIZIATO.
+    </div>
+
+    <br>
+
+    <input type="password" id="password" placeholder="CODICE">
+
+    <button onclick="checkPassword()">
+        [ CONFERMA ]
+    </button>
+
+    <p id="error" class="warning"></p>
+
+</div>
+
+
+<div id="classified" class="hidden">
+
+    <div class="dim">
+        > ACCESSO CONSENTITO
+    </div>
+
+    <div class="dim">
+        > ARCHIVIO CLASSIFICATO SBLOCCATO
+    </div>
+
+    <br>
+
+    <div>
+        DATABASE SOGGETTI: 001 — 009
+    </div>
+
+    <div>
+        INTEGRITÀ ARCHIVIO: 61%
+    </div>
+
+    <div>
+        DOCUMENTI RECUPERATI: 10
+    </div>
+
+    <br>
+
+    <div class="warning">
+        ALCUNI REGISTRI SONO STATI ALTERATI O DANNEGGIATI.
+    </div>
+
+
+    <!-- FILE 000 -->
+
+    <div class="file secret" onclick="openFile('origin')">
+        🔒 FILE_000 // ORIGINE
+    </div>
+
+    <div id="origin" class="hidden">
+
+        <br>
+
+        <div class="dim">
+            FILE // 000
+        </div>
+
+        <br>
+
+        <div>
+            CLASSIFICAZIONE: ORIGINALE
+        </div>
+
+        <div>
+            DATA: 17/08/2002
+        </div>
+
+        <div>
+            AUTORE: S. VITALE
+        </div>
+
+        <div>
+            STATO: PARZIALMENTE RECUPERATO
+        </div>
+
+        <br>
+
+        <div class="warning">
+            [REGISTRO PRECEDENTE ALLA CREAZIONE DEL DATABASE]
+        </div>
+
+        <br>
+
+        <div>
+            Il progetto non è iniziato a Valdombra.
+        </div>
+
+        <br>
+
+        <div>
+            Valdombra è arrivata dopo.
+        </div>
+
+        <br>
+
+        <div>
+            Prima c'era solo una ricerca.
+        </div>
+
+        <div>
+            Nessun soggetto.
+        </div>
+
+        <div>
+            Nessun test.
+        </div>
+
+        <div>
+            Nessun codice.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            [████████████████████████]
+        </div>
+
+        <br>
+
+        <div>
+            La prima osservazione non riguardava una persona.
+        </div>
+
+        <br>
+
+        <div>
+            Riguardava il mare.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            [PARTE DEL REGISTRO ILLEGGIBILE]
+        </div>
+
+        <br>
+
+        <div>
+            "...non è il luogo che cambia."
+        </div>
+
+        <div>
+            "...è ciò che porta con sé."
+        </div>
+
+        <br>
+
+        <div class="redacted">
+            ███████████████████████████████
+        </div>
+
+        <br>
+
+        <div>
+            Il nome del progetto è stato modificato.
+        </div>
+
+        <div>
+            Il primo nome è stato cancellato.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            [ARCHIVIO CORROTTO]
+        </div>
+
+        <br>
+
+        <div>
+            Resta una sola annotazione:
+        </div>
+
+        <br>
+
+        <div>
+            K.
+        </div>
+
+        <br>
+
+        <div class="dim">
+            [FINE DEL DOCUMENTO]
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 003 -->
+
+    <div class="file" onclick="openFile('bigode')">
+        📄 SOGGETTO_003 // BIGODE MARTINEZ
+    </div>
+
+    <div id="bigode" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_003</div>
+
+        <br>
+
+        <div>NOME: BIGODE MARTINEZ</div>
+        <div>CODICE: 003</div>
+        <div>FASE: II</div>
+        <div>STATO: TERMINATO</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: RISPOSTA NON CONFORME
+        </div>
+
+        <div>
+            OSSERVAZIONE: adattamento insufficiente.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            CAUSA REGISTRATA: ███████████
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 004 -->
+
+    <div class="file" onclick="openFile('alek')">
+        📄 SOGGETTO_004 // ALEK BARBOSA
+    </div>
+
+    <div id="alek" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_004</div>
+
+        <br>
+
+        <div>NOME: ALEK BARBOSA</div>
+        <div>CODICE: 004</div>
+        <div>FASE: II</div>
+        <div>STATO: TERMINATO</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: PERDITA DI CONTINUITÀ
+        </div>
+
+        <div>
+            OSSERVAZIONE: nessuna risposta successiva.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            CAUSA REGISTRATA: ███████████
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 005 -->
+
+    <div class="file" onclick="openFile('mariane')">
+        📄 SOGGETTO_005 // MARIANE MIRANDA COSTA
+    </div>
+
+    <div id="mariane" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_005</div>
+
+        <br>
+
+        <div>NOME: MARIANE MIRANDA COSTA</div>
+        <div>CODICE: 005</div>
+        <div>FASE: III</div>
+        <div>STATO: TERMINATO</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: ADATTAMENTO NEGATIVO
+        </div>
+
+        <div>
+            OSSERVAZIONE: risultati instabili.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            CAUSA REGISTRATA: ███████████
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 006 -->
+
+    <div class="file" onclick="openFile('aurora')">
+        📄 SOGGETTO_006 // AURORA MARTINS
+    </div>
+
+    <div id="aurora" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_006</div>
+
+        <br>
+
+        <div>NOME: AURORA MARTINS</div>
+        <div>CODICE: 006</div>
+        <div>FASE: III</div>
+        <div>STATO: TERMINATO</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: MEMORIA INCONSISTENTE
+        </div>
+
+        <div>
+            OSSERVAZIONE: risultati divergenti.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            CAUSA REGISTRATA: ███████████
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 007 -->
+
+    <div class="file" onclick="openFile('miguel')">
+        📄 SOGGETTO_007 // MIGUEL DIEGO "MD" DA SILVA
+    </div>
+
+    <div id="miguel" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_007</div>
+
+        <br>
+
+        <div>NOME: MIGUEL DIEGO "MD" DA SILVA</div>
+        <div>CODICE: 007</div>
+        <div>FASE: III</div>
+        <div>STATO: TERMINATO</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: RISPOSTA IMPREVEDIBILE
+        </div>
+
+        <div>
+            OSSERVAZIONE: comportamento non replicabile.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            CAUSA REGISTRATA: ███████████
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 008 -->
+
+    <div class="file" onclick="openFile('luna')">
+        📄 SOGGETTO_008 // LUNA DE LA VEGA
+    </div>
+
+    <div id="luna" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_008</div>
+
+        <br>
+
+        <div>NOME: LUNA DE LA VEGA</div>
+        <div>CODICE: 008</div>
+        <div>FASE: IV</div>
+        <div>STATO: SCONOSCIUTO</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: ARCHIVIO INTERROTTO
+        </div>
+
+        <div>
+            OSSERVAZIONE: dati insufficienti.
+        </div>
+
+    </div>
+
+
+    <!-- SOGGETTO 009 -->
+
+    <div class="file" onclick="openFile('max')">
+        📄 SOGGETTO_009 // MAX SPARTTA
+    </div>
+
+    <div id="max" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_009</div>
+
+        <br>
+
+        <div>NOME: MAX SPARTTA</div>
+        <div>CODICE: 009</div>
+        <div>FASE: IV</div>
+        <div>STATO: FUGA / LOCALIZZAZIONE SCONOSCIUTA</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: ACCESSO NON AUTORIZZATO
+        </div>
+
+        <div>
+            OSSERVAZIONE: soggetto scomparso dai registri.
+        </div>
+
+    </div>
+
+
+    <!-- ALESSIO -->
+
+    <div class="file" onclick="openFile('alessio')">
+        📄 SOGGETTO_001 // ALESSIO VITALE
+    </div>
+
+    <div id="alessio" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_001</div>
+
+        <br>
+
+        <div>NOME: ALESSIO VITALE</div>
+        <div>NOME UTILIZZATO: KAITO</div>
+        <div>CODICE: 001</div>
+        <div>DATA DI NASCITA: 07/12/2004</div>
+        <div>FUNZIONE: SOGGETTO PRIMARIO</div>
+        <div>FASE: I — III</div>
+        <div>STATO: FUGA / LOCALIZZAZIONE SCONOSCIUTA</div>
+
+        <br>
+
+        <div>
+            ULTIMO REGISTRO: RISPOSTA NON PREVISTA
+        </div>
+
+        <br>
+
+        <div>
+            Il soggetto ha prodotto una risposta differente
+            rispetto alle osservazioni precedenti.
+        </div>
+
+        <br>
+
+        <div class="warning">
+            NOTA: il nome "Kaito" compare in documenti
+            successivi all'inizio del progetto.
+        </div>
+
+    </div>
+
+
+    <!-- ATLAS -->
+
+    <div class="file" onclick="openFile('atlas')">
+        📄 SOGGETTO_002 // ATLAS VITALE
+    </div>
+
+    <div id="atlas" class="hidden">
+
+        <br>
+
+        <div class="dim">FILE // SOGGETTO_002</div>
+
+        <br>
+
+        <div>NOME: ATLAS VITALE</div>
+        <div>CODICE: 002</div>
+        <div>FUNZIONE: SOGGETTO SECONDARIO</div>
+        <div>FASE: IV</div>
+        <div>STATO: SCONOSCIUTO</div>
+
+        <br>
+
+        <div>
+            ULTIMA LOCALIZZAZIONE: CASTELLO DI VALDOMBRA
+        </div>
+
+        <br>
+
+        <div class="warning">
+            NOTA: il collegamento con SOGGETTO_001
+            è stato classificato.
+        </div>
+
+    </div>
+
+
+    <br>
+
+    <div class="warning">
+        > AVVISO: IL FILE_000 È STATO RECUPERATO
+        AUTOMATICAMENTE.
+    </div>
+
+    <div class="warning">
+        > ULTERIORI INFORMAZIONI POTREBBERO ESSERE DISPONIBILI.
+    </div>
+
+</div>
+
+
+<div class="back" onclick="window.location.href='archive006.html'">
+    &lt; TORNA ALL'ARCHIVIO
+</div>
+
+</div>
+
+
+<script>
+
+function checkPassword() {
+
+    const password = document.getElementById("password").value;
+
+    if (password === "17082002") {
+
+        document.getElementById("login").style.display = "none";
+
+        document.getElementById("classified").classList.remove("hidden");
+
+    } else {
+
+        document.getElementById("error").innerText =
+        "> CODICE ERRATO.";
+
+    }
+}
+
+
+function openFile(file) {
+
+    document.getElementById(file).classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>

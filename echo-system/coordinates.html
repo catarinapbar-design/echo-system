@@ -1,0 +1,498 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VITALE // GLOBAL LOCATION DATABASE</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #050505;
+    color: #39ff88;
+    font-family: "Courier New", monospace;
+    padding: 30px;
+}
+
+.terminal {
+    width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
+    background: #070707;
+    border: 1px solid #39ff88;
+    box-shadow:
+        0 0 12px rgba(57,255,136,.30),
+        0 0 45px rgba(57,255,136,.08);
+}
+
+.header {
+    padding: 22px 28px;
+    border-bottom: 1px solid #39ff88;
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-shadow:
+        0 0 8px #39ff88,
+        0 0 20px rgba(57,255,136,.5);
+}
+
+.content {
+    padding: 32px;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.line {
+    margin: 5px 0;
+}
+
+.database {
+    margin-top: 25px;
+}
+
+.location {
+    padding: 13px 18px;
+    margin: 10px 0;
+    border: 1px solid rgba(57,255,136,.45);
+    background: rgba(57,255,136,.02);
+    transition: .15s;
+}
+
+.location:hover {
+    border-color: #39ff88;
+    background: rgba(57,255,136,.06);
+    box-shadow: 0 0 12px rgba(57,255,136,.15);
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    color: #ffffff;
+}
+
+.locked {
+    color: #6effa5;
+}
+
+#passwordBox {
+    display: none;
+    margin-top: 25px;
+    padding: 25px;
+    border: 1px solid #39ff88;
+    background: #050505;
+}
+
+input {
+    width: 300px;
+    max-width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #000;
+    border: 1px solid #39ff88;
+    color: #39ff88;
+    outline: none;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+}
+
+input:focus {
+    box-shadow: 0 0 12px rgba(57,255,136,.3);
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: transparent;
+    border: 1px solid #39ff88;
+    color: #39ff88;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #ffffff;
+    background: rgba(57,255,136,.08);
+    box-shadow: 0 0 15px rgba(57,255,136,.35);
+}
+
+#result {
+    display: none;
+    margin-top: 25px;
+    padding: 25px;
+    border: 1px solid #39ff88;
+    background: rgba(57,255,136,.03);
+}
+
+.success {
+    color: #39ff88;
+}
+
+.error {
+    color: #ff5555;
+    margin-top: 15px;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 11px 18px;
+    border: 1px solid #39ff88;
+    color: #39ff88;
+    text-decoration: none;
+}
+
+.back:hover {
+    color: #ffffff;
+    background: rgba(57,255,136,.08);
+    box-shadow: 0 0 15px rgba(57,255,136,.35);
+}
+
+.footer {
+    margin-top: 30px;
+    color: #6effa5;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="header">
+        VITALE // GLOBAL LOCATION DATABASE
+    </div>
+
+    <div class="content">
+
+        <p class="line">&gt; SYSTEM INITIALIZING...</p>
+        <p class="line">&gt; CONNECTION: SECURE</p>
+        <p class="line">&gt; DATABASE: ONLINE</p>
+        <p class="line">&gt; USER: K41T0</p>
+        <p class="line">&gt; ACCESS LEVEL: ROOT</p>
+
+        <div class="database">
+
+            <div class="location">
+                [001] // BLACKWOOD STATION<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [002] // VALNERA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [003] // KUROHAMA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [004] // SAINT RAVEN<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [005] // PUERTO SOMBRA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div
+                class="location clickable"
+                onclick="open006()"
+            >
+                [006] // LOCATION CLASSIFIED<br>
+                STATUS: <span class="locked">LOCKED</span>
+            </div>
+
+            <div class="location">
+                [007] // VELENKA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [008] // MONTE ROSSO<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [009] // NOVA ESPERANÇA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [010] // GREYHAVEN<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [011] // PORTO AZZURRO<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [012] // KASUMI<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [013] // SAN MERIDIAN<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [014] // REDWOOD FALLS<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [015] // LAGO NERO<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [016] // VARENNA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [017] // NORTHSTAR<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [018] // SANTA LUCIA<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [019] // MIRAGE POINT<br>
+                STATUS: ARCHIVED
+            </div>
+
+            <div class="location">
+                [020] // VALLE OSCURA<br>
+                STATUS: ARCHIVED
+            </div>
+
+        </div>
+
+        <div id="passwordBox">
+
+            <p>&gt; LOCATION [006] SELECTED</p>
+            <p>&gt; SECURITY LEVEL: RESTRICTED</p>
+            <p>&gt; ADDITIONAL AUTHORIZATION REQUIRED.</p>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="ENTER ACCESS KEY"
+                autocomplete="off"
+            >
+
+            <br>
+
+            <button onclick="checkPassword()">
+                [ AUTHENTICATE ]
+            </button>
+
+            <div id="error" class="error"></div>
+
+        </div>
+
+        <div id="result">
+
+            <p class="success">
+                &gt; [006] // DECRYPTED
+            </p>
+
+            <p class="success">
+                &gt; NOME: SÃO VICENTE DO NORTE
+            </p>
+
+            <p class="success">
+                &gt; ESTADO: RIO GRANDE DO SUL
+            </p>
+
+            <p class="success">
+                &gt; COORDENADAS: -29.6868, -53.8149
+            </p>
+
+            <p class="success">
+                &gt; STATUS: LOCATION CONFIRMED
+            </p>
+
+        </div>
+
+        <div class="footer">
+
+            &gt; DATABASE ACCESS COMPLETE.<br>
+            &gt; SESSION: K41T0
+
+        </div>
+
+        <a
+            class="back"
+            href="index.html"
+        >
+            &lt;&lt; RETURN TO VITALE // SYSTEM
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function logAccess(
+    action,
+    system,
+    status,
+    message
+) {
+
+    const logs =
+        JSON.parse(
+            localStorage.getItem("echoSystemLogs")
+        ) || [];
+
+    const now = new Date();
+
+    logs.push({
+
+        date: now.toLocaleDateString("en-GB"),
+
+        time: now.toLocaleTimeString("en-GB"),
+
+        type: "ACCESS",
+
+        user: "K41T0",
+
+        action: action,
+
+        system: system,
+
+        access: status,
+
+        message: message
+
+    });
+
+    localStorage.setItem(
+        "echoSystemLogs",
+        JSON.stringify(logs)
+    );
+}
+
+
+logAccess(
+    "ACCESS",
+    "GLOBAL LOCATION DATABASE",
+    "GRANTED",
+    "K41T0 accessed GLOBAL LOCATION DATABASE"
+);
+
+
+function open006() {
+
+    document.getElementById(
+        "passwordBox"
+    ).style.display = "block";
+
+    document.getElementById(
+        "password"
+    ).focus();
+
+    logAccess(
+        "SELECT",
+        "LOCATION [006]",
+        "PENDING",
+        "K41T0 selected restricted location [006]"
+    );
+}
+
+
+function checkPassword() {
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+    const error =
+        document.getElementById(
+            "error"
+        );
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    if (password === "MARE") {
+
+        error.textContent = "";
+
+        result.style.display = "block";
+
+        logAccess(
+            "DECRYPT",
+            "LOCATION [006]",
+            "GRANTED",
+            "K41T0 decrypted location [006]"
+        );
+
+    } else {
+
+        result.style.display = "none";
+
+        error.textContent =
+            "> ACCESS DENIED // INVALID KEY";
+
+        logAccess(
+            "DECRYPT",
+            "LOCATION [006]",
+            "DENIED",
+            "K41T0 entered an invalid key for location [006]"
+        );
+
+    }
+
+}
+
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
+```

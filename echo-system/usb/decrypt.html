@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VITALE // DECRYPTION</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #030303;
+            color: #cfcfcf;
+            font-family: "Courier New", monospace;
+        }
+
+        .terminal {
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #777;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 70px auto;
+        }
+
+        .boot {
+            color: #666;
+            line-height: 2;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: white;
+            letter-spacing: 4px;
+        }
+
+        .box {
+            border: 1px solid #292929;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .hint {
+            color: #777;
+            line-height: 1.8;
+            margin-top: 25px;
+        }
+
+        .input-area {
+            margin-top: 40px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: #050505;
+            border: 1px solid #444;
+            color: white;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #888;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 14px 25px;
+            background: transparent;
+            border: 1px solid #555;
+            color: white;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #151515;
+        }
+
+        #message {
+            margin-top: 25px;
+            min-height: 25px;
+            color: #888;
+        }
+
+        .footer {
+            margin-top: 70px;
+            color: #444;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="terminal">
+
+
+    <header>
+
+        <div class="logo">
+            VITALE // DECRYPTION
+        </div>
+
+        <div class="status">
+            ● ENCRYPTED
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <div class="boot">
+
+            > SECURITY LAYER 01<br>
+
+            > ENCRYPTED PARTITION DETECTED<br>
+
+            > ACCESS LEVEL: ROOT REQUIRED<br>
+
+            > PASSWORD VERIFICATION ACTIVE
+
+        </div>
+
+
+        <h1>
+            DECRYPTION REQUIRED
+        </h1>
+
+
+        <div class="box">
+
+            <div>
+                DEVICE: VT-006
+            </div>
+
+            <div>
+                OWNER: STEFANO VITALE
+            </div>
+
+            <div>
+                SECURITY: LEVEL 01
+            </div>
+
+
+            <p class="hint">
+
+                "The answer is not in what you see.<br>
+                It is in what remains."
+
+            </p>
+
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="password"
+                    placeholder="ENTER DECRYPTION KEY..."
+                    autocomplete="off"
+                >
+
+                <button onclick="checkPassword()">
+                    [ VERIFY KEY ]
+                </button>
+
+                <div id="message"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+
+            STEFANO VITALE // PRIVATE STORAGE<br>
+            UNAUTHORIZED ACCESS WILL BE LOGGED.
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+function checkPassword() {
+
+    const input =
+        document.getElementById("password").value
+        .trim()
+        .toUpperCase();
+
+    const message =
+        document.getElementById("message");
+
+
+    if (input === "ESSENZA") {
+
+        message.innerText =
+        "> PARTIAL KEY ACCEPTED.";
+
+        setTimeout(function() {
+
+            window.location.href =
+            "stage2.html";
+
+        }, 1200);
+
+    }
+
+    else {
+
+        message.innerText =
+        "> INVALID KEY. ACCESS DENIED.";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

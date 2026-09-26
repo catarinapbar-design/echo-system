@@ -1,0 +1,1135 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ECHO // JUNGKOOK ARCHIVES</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    padding: 30px;
+
+}
+
+.terminal {
+
+    width: 1000px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    background: #070707;
+
+    border: 1px solid #39ff88;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.30),
+        0 0 45px rgba(57,255,136,.08);
+
+}
+
+.header {
+
+    padding: 22px 28px;
+
+    border-bottom: 1px solid #39ff88;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 8px #39ff88,
+        0 0 20px rgba(57,255,136,.5);
+
+}
+
+.content {
+
+    padding: 32px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+.line {
+    margin: 5px 0;
+}
+
+.security {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border-left: 1px solid #39ff88;
+
+    background: rgba(57,255,136,.025);
+
+}
+
+.security p {
+    margin: 5px 0;
+}
+
+.section {
+    margin-top: 35px;
+}
+
+.section-title {
+
+    color: #ffffff;
+
+    margin-bottom: 15px;
+
+    font-weight: bold;
+
+}
+
+.document {
+
+    display: block;
+
+    width: 100%;
+
+    margin: 12px 0;
+
+    padding: 14px 18px;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    background: #070707;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 16px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+}
+
+.document:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+.document span {
+    color: #7dffad;
+}
+
+.empty {
+
+    margin-top: 12px;
+
+    padding: 15px;
+
+    border: 1px dashed rgba(57,255,136,.4);
+
+    color: #7dffad;
+
+}
+
+.create-button {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 14px 18px;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    background: rgba(57,255,136,.04);
+
+    font-family: "Courier New", monospace;
+
+    font-size: 16px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+}
+
+.create-button:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.10);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+.editor {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border: 1px solid #39ff88;
+
+    background: rgba(57,255,136,.025);
+
+}
+
+.editor-title {
+
+    color: #ffffff;
+
+    margin-bottom: 18px;
+
+}
+
+.field-label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+
+}
+
+input,
+textarea {
+
+    width: 100%;
+
+    background: #020202;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    outline: none;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 16px;
+
+    padding: 10px 12px;
+
+}
+
+input {
+
+    height: 45px;
+
+}
+
+textarea {
+
+    min-height: 220px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+
+}
+
+input:focus,
+textarea:focus {
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.25);
+
+}
+
+.editor-buttons {
+
+    margin-top: 18px;
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+.editor-button {
+
+    padding: 11px 18px;
+
+    border: 1px solid #39ff88;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    cursor: pointer;
+
+}
+
+.editor-button:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+.cancel-button {
+
+    border-color: rgba(57,255,136,.45);
+
+    color: #7dffad;
+
+}
+
+.delete-button {
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(255,85,85,.5);
+
+    background: #050505;
+
+    color: #ff7777;
+
+    font-family: "Courier New", monospace;
+
+    cursor: pointer;
+
+}
+
+.delete-button:hover {
+
+    border-color: #ff5555;
+
+    color: #ff5555;
+
+    box-shadow:
+        0 0 12px rgba(255,85,85,.20);
+
+}
+
+.file-actions {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 8px;
+
+}
+
+.error {
+
+    margin-top: 12px;
+
+    color: #ff5555;
+
+}
+
+.success {
+
+    margin-top: 12px;
+
+    color: #39ff88;
+
+}
+
+.back {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 11px 18px;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    text-decoration: none;
+
+    transition: .15s;
+
+}
+
+.back:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+.footer {
+
+    margin-top: 30px;
+
+    color: #6effa5;
+
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .header {
+        font-size: 20px;
+        padding: 18px;
+    }
+
+    .content {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="header">
+        ECHO // JUNGKOOK ARCHIVES
+    </div>
+
+    <div class="content">
+
+        <p class="line">
+            &gt; SECURITY PROTOCOL INITIALIZING...
+        </p>
+
+        <p class="line">
+            &gt; VERIFYING USER SESSION...
+        </p>
+
+
+        <div class="security">
+
+            <p>&gt; USER: JUNGKOOK</p>
+
+            <p>&gt; SUBJECT: RÉMY BATHORY</p>
+
+            <p>&gt; ACCESS LEVEL: AUTHORIZED</p>
+
+            <p>&gt; CLEARANCE: LIMITED</p>
+
+            <p>&gt; PERSONAL ARCHIVE ACCESS GRANTED.</p>
+
+            <p>&gt; USER ARCHIVE AVAILABLE.</p>
+
+        </div>
+
+
+        <div class="section">
+
+            <p class="section-title">
+                &gt; PERSONAL DOCUMENTS:
+            </p>
+
+
+            <div id="customFiles"></div>
+
+
+            <button
+                class="create-button"
+                type="button"
+                onclick="openEditor()"
+            >
+                [ + CREATE NEW PERSONAL FILE ]
+            </button>
+
+
+            <div
+                class="editor"
+                id="editor"
+            >
+
+                <div class="editor-title" id="editorTitle">
+                    &gt; CREATE NEW PERSONAL FILE
+                </div>
+
+
+                <label
+                    class="field-label"
+                    for="fileName"
+                >
+                    &gt; FILE NAME:
+                </label>
+
+                <input
+                    type="text"
+                    id="fileName"
+                    placeholder="ENTER FILE NAME"
+                    autocomplete="off"
+                >
+
+
+                <label
+                    class="field-label"
+                    for="fileTitle"
+                >
+                    &gt; FILE TITLE:
+                </label>
+
+                <input
+                    type="text"
+                    id="fileTitle"
+                    placeholder="ENTER TITLE"
+                    autocomplete="off"
+                >
+
+
+                <label
+                    class="field-label"
+                    for="fileContent"
+                >
+                    &gt; CONTENT:
+                </label>
+
+                <textarea
+                    id="fileContent"
+                    placeholder="WRITE YOUR FILE HERE..."
+                ></textarea>
+
+
+                <div class="editor-buttons">
+
+                    <button
+                        class="editor-button"
+                        type="button"
+                        onclick="saveFile()"
+                    >
+                        [ SAVE FILE ]
+                    </button>
+
+                    <button
+                        class="editor-button cancel-button"
+                        type="button"
+                        onclick="closeEditor()"
+                    >
+                        [ CANCEL ]
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="error"
+                    id="editorError"
+                ></div>
+
+                <div
+                    class="success"
+                    id="editorSuccess"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+
+            &gt; ARCHIVE STATUS: ONLINE<br>
+
+            &gt; ENCRYPTION: ACTIVE<br>
+
+            &gt; USER: JUNGKOOK
+
+        </div>
+
+
+        <a
+            class="back"
+            href="index.html"
+        >
+            [ BACK TO JUNGKOOK SYSTEM ]
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+=====================================
+SESSION PROTECTION
+=====================================
+*/
+
+const currentUser =
+    localStorage.getItem("currentUser");
+
+if (currentUser !== "JUNGKOOK") {
+
+    window.location.href = "../login.html";
+
+}
+
+
+/*
+=====================================
+SEPARATE STORAGE FOR JUNGKOOK
+=====================================
+*/
+
+const storageKey =
+    "jungkookPersonalFiles";
+
+
+let editingFileId = null;
+
+
+/*
+=====================================
+OPEN EDITOR
+=====================================
+*/
+
+function openEditor() {
+
+    editingFileId = null;
+
+    document.getElementById("editorTitle").textContent =
+        "> CREATE NEW PERSONAL FILE";
+
+    document.getElementById("fileName").value =
+        "";
+
+    document.getElementById("fileTitle").value =
+        "";
+
+    document.getElementById("fileContent").value =
+        "";
+
+    document.getElementById("editorError").textContent =
+        "";
+
+    document.getElementById("editorSuccess").textContent =
+        "";
+
+    document.getElementById("editor").style.display =
+        "block";
+
+    document.getElementById("fileName").focus();
+
+}
+
+
+/*
+=====================================
+CLOSE EDITOR
+=====================================
+*/
+
+function closeEditor() {
+
+    editingFileId = null;
+
+    document.getElementById("editor").style.display =
+        "none";
+
+    document.getElementById("editorError").textContent =
+        "";
+
+    document.getElementById("editorSuccess").textContent =
+        "";
+
+    document.getElementById("fileName").value =
+        "";
+
+    document.getElementById("fileTitle").value =
+        "";
+
+    document.getElementById("fileContent").value =
+        "";
+
+}
+
+
+/*
+=====================================
+SAVE FILE
+=====================================
+*/
+
+function saveFile() {
+
+    const fileName =
+        document.getElementById("fileName").value.trim();
+
+    const fileTitle =
+        document.getElementById("fileTitle").value.trim();
+
+    const fileContent =
+        document.getElementById("fileContent").value;
+
+
+    const error =
+        document.getElementById("editorError");
+
+    const success =
+        document.getElementById("editorSuccess");
+
+
+    error.textContent = "";
+    success.textContent = "";
+
+
+    if (!fileName) {
+
+        error.textContent =
+            "> ERROR: FILE NAME REQUIRED.";
+
+        return;
+
+    }
+
+
+    if (!fileContent.trim()) {
+
+        error.textContent =
+            "> ERROR: FILE CONTENT REQUIRED.";
+
+        return;
+
+    }
+
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    /*
+    =====================================
+    EDIT EXISTING FILE
+    =====================================
+    */
+
+    if (editingFileId !== null) {
+
+        const file =
+            files.find(function(item) {
+
+                return item.id === editingFileId;
+
+            });
+
+
+        if (!file) {
+
+            error.textContent =
+                "> ERROR: FILE NOT FOUND.";
+
+            return;
+
+        }
+
+
+        file.name =
+            fileName;
+
+        file.title =
+            fileTitle || "PERSONAL FILE";
+
+        file.content =
+            fileContent;
+
+        file.modified =
+            new Date().toLocaleString("en-GB");
+
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(files)
+        );
+
+
+        success.textContent =
+            "> FILE UPDATED SUCCESSFULLY.";
+
+
+        renderFiles();
+
+        return;
+
+    }
+
+
+    /*
+    =====================================
+    CREATE NEW FILE
+    =====================================
+    */
+
+    const newFile = {
+
+        id:
+            Date.now(),
+
+        name:
+            fileName,
+
+        title:
+            fileTitle || "PERSONAL FILE",
+
+        content:
+            fileContent,
+
+        created:
+            new Date().toLocaleString("en-GB")
+
+    };
+
+
+    files.push(newFile);
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(files)
+    );
+
+
+    success.textContent =
+        "> FILE SAVED SUCCESSFULLY.";
+
+
+    renderFiles();
+
+
+    setTimeout(function() {
+
+        closeEditor();
+
+    }, 500);
+
+}
+
+
+/*
+=====================================
+SHOW FILES
+=====================================
+*/
+
+function renderFiles() {
+
+    const container =
+        document.getElementById("customFiles");
+
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (files.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">' +
+            '&gt; NO PERSONAL FILES CREATED.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    files.forEach(function(file, index) {
+
+        const wrapper =
+            document.createElement("div");
+
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "document";
+
+        button.type =
+            "button";
+
+        button.innerHTML =
+            "[U" +
+            String(index + 1).padStart(2, "0") +
+            "] " +
+            escapeHTML(file.name) +
+            ' <span>// ' +
+            escapeHTML(file.title) +
+            '</span>';
+
+
+        button.onclick =
+            function() {
+
+                editFile(file.id);
+
+            };
+
+
+        const actions =
+            document.createElement("div");
+
+        actions.className =
+            "file-actions";
+
+
+        const deleteButton =
+            document.createElement("button");
+
+        deleteButton.className =
+            "delete-button";
+
+        deleteButton.type =
+            "button";
+
+        deleteButton.textContent =
+            "[ DELETE FILE ]";
+
+
+        deleteButton.onclick =
+            function(event) {
+
+                event.stopPropagation();
+
+                deleteFile(file.id);
+
+            };
+
+
+        actions.appendChild(
+            deleteButton
+        );
+
+
+        wrapper.appendChild(
+            button
+        );
+
+        wrapper.appendChild(
+            actions
+        );
+
+
+        container.appendChild(
+            wrapper
+        );
+
+    });
+
+}
+
+
+/*
+=====================================
+EDIT FILE
+=====================================
+*/
+
+function editFile(id) {
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    const file =
+        files.find(function(item) {
+
+            return item.id === id;
+
+        });
+
+
+    if (!file) {
+        return;
+    }
+
+
+    editingFileId =
+        file.id;
+
+
+    document.getElementById("editorTitle").textContent =
+        "> EDIT PERSONAL FILE";
+
+
+    document.getElementById("fileName").value =
+        file.name;
+
+    document.getElementById("fileTitle").value =
+        file.title;
+
+    document.getElementById("fileContent").value =
+        file.content;
+
+
+    document.getElementById("editorError").textContent =
+        "";
+
+    document.getElementById("editorSuccess").textContent =
+        "> FILE LOADED.";
+
+
+    document.getElementById("editor").style.display =
+        "block";
+
+
+    document.getElementById("fileName").focus();
+
+}
+
+
+/*
+=====================================
+DELETE FILE
+=====================================
+*/
+
+function deleteFile(id) {
+
+    const confirmed =
+        confirm(
+            "DELETE THIS PERSONAL FILE?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    let files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    files =
+        files.filter(function(file) {
+
+            return file.id !== id;
+
+        });
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(files)
+    );
+
+
+    renderFiles();
+
+}
+
+
+/*
+=====================================
+SECURITY HELPER
+=====================================
+*/
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/*
+=====================================
+INITIAL LOAD
+=====================================
+*/
+
+renderFiles();
+
+</script>
+
+</body>
+
+</html>
+```

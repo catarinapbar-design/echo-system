@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>VITALE // LOCALITÀ</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    padding: 40px;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.file {
+    border: 1px solid #477;
+    padding: 18px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.file:hover {
+    border-color: #00ff66;
+}
+
+.dim {
+    color: #477;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    margin-top: 30px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div>VITALE // LOCALITÀ</div>
+
+<div class="dim">
+------------------------------------------
+</div>
+
+<br>
+
+<div>> DATABASE GEOGRAFICO</div>
+<div>> ACCESSO AUTORIZZATO</div>
+
+<br>
+
+<div class="file" onclick="openFile('valdombra')">
+    📍 CASTELLO DI VALDOMBRA
+</div>
+
+<div id="valdombra" class="hidden">
+
+    <br>
+
+    <div class="dim">
+        FILE // LOCATION_006
+    </div>
+
+    <br>
+
+    <div>NOME: CASTELLO DI VALDOMBRA</div>
+
+    <div>PAESE: ITALIA</div>
+
+    <div>REGIONE: TOSCANA</div>
+
+    <div>COORDINATE: 43.2187, 11.4729</div>
+
+    <br>
+
+    <div class="dim">
+        CLASSIFICAZIONE: FACILITY VITALE
+    </div>
+
+    <div class="dim">
+        UTILIZZO: TEST / RICERCA
+    </div>
+
+    <br>
+
+    <div>
+        STATO: ABBANDONATO
+    </div>
+
+    <div>
+        ULTIMO ACCESSO: RISERVATO
+    </div>
+
+</div>
+
+<div class="back" onclick="window.location.href='archive006.html'">
+    &lt; TORNA ALL'ARCHIVIO
+</div>
+
+</div>
+
+<script>
+
+function openFile(file) {
+    document.getElementById(file).classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>

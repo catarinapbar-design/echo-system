@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ECHO // JUNGKOOK // COMMUNICATIONS</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: #00ff66;
+            font-family: "Courier New", monospace;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .terminal {
+            border: 1px solid #00ff66;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 26px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #008f3c;
+            margin-bottom: 25px;
+        }
+
+        .status {
+            margin-bottom: 25px;
+        }
+
+        .status p {
+            margin: 6px 0;
+        }
+
+        .online {
+            color: #00ff66;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        button,
+        .back {
+            font-family: "Courier New", monospace;
+            color: #00ff66;
+            background: #020702;
+            border: 1px solid #003d1b;
+            padding: 12px 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        button:hover,
+        .back:hover {
+            background: #00ff66;
+            color: #000;
+        }
+
+        .communication {
+            border: 1px solid #003d1b;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .communication h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .field {
+            margin: 7px 0;
+        }
+
+        .label {
+            color: #008f3c;
+        }
+
+        .message {
+            border-top: 1px solid #003d1b;
+            margin-top: 15px;
+            padding-top: 15px;
+            white-space: pre-wrap;
+        }
+
+        .editor {
+            display: none;
+            border: 1px solid #00ff66;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .editor h2 {
+            margin-top: 0;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #003d1b;
+            padding: 10px;
+            font-family: "Courier New", monospace;
+            margin-top: 5px;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .editor-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .danger {
+            border-color: #660000;
+            color: #ff4444;
+        }
+
+        .danger:hover {
+            background: #ff4444;
+            color: #000;
+        }
+
+        .back-area {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #003d1b;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="terminal">
+
+        <h1>ECHO // JUNGKOOK // COMMUNICATIONS</h1>
+
+        <div class="subtitle">
+            SECURE CHANNEL // COMMUNICATION DATABASE
+        </div>
+
+        <div class="status">
+
+            <p>&gt; INITIALIZING...</p>
+            <p>&gt; CONNECTING TO SECURE CHANNEL...</p>
+            <p>&gt; DATABASE: <span class="online">ONLINE</span></p>
+            <p>&gt; USER: JUNGKOOK</p>
+            <p>&gt; ACCESS LEVEL: <span class="online">AUTHORIZED</span></p>
+
+        </div>
+
+
+        <div class="controls">
+
+            <button onclick="toggleEditor()">
+                [ EDIT DATABASE ]
+            </button>
+
+            <button onclick="newCommunication()">
+                [ + NEW COMMUNICATION ]
+            </button>
+
+        </div>
+
+
+        <div class="editor" id="editor">
+
+            <h2>&gt; COMMUNICATION EDITOR</h2>
+
+            <input type="hidden" id="editIndex">
+
+            <div class="form-group">
+
+                <label>COMMUNICATION ID</label>
+
+                <input
+                    type="text"
+                    id="communicationId"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>STATUS</label>
+
+                <input
+                    type="text"
+                    id="communicationStatus"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>CONTACT</label>
+
+                <input
+                    type="text"
+                    id="communicationContact"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>LOCATION</label>
+
+                <input
+                    type="text"
+                    id="communicationLocation"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>LANGUAGE</label>
+
+                <input
+                    type="text"
+                    id="communicationLanguage"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>MESSAGE SENDER</label>
+
+                <input
+                    type="text"
+                    id="communicationSender"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>MESSAGE</label>
+
+                <textarea
+                    id="communicationMessage"
+                ></textarea>
+
+            </div>
+
+
+            <div class="editor-buttons">
+
+                <button onclick="saveCommunication()">
+                    [ SAVE ]
+                </button>
+
+                <button onclick="clearEditor()">
+                    [ CLEAR ]
+                </button>
+
+                <button
+                    class="danger"
+                    onclick="deleteCommunication()"
+                >
+                    [ DELETE ]
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div id="communicationsContainer"></div>
+
+
+        <div class="back-area">
+
+            <a
+                class="back"
+                href="index.html"
+            >
+                [ RETURN TO JUNGKOOK SYSTEM ]
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const currentUser =
+        localStorage.getItem("currentUser");
+
+    if (currentUser !== "JUNGKOOK") {
+
+        window.location.href =
+            "../login.html";
+
+    }
+
+
+    const storageKey =
+        "jungkookCommunications";
+
+
+    const originalCommunications = [
+
+        {
+            id: "COMM-JK-001",
+            status: "RECOVERED",
+            contact: "UNKNOWN",
+            location: "SEOUL",
+            language: "KOREAN",
+            sender: "UNKNOWN",
+            message: "Communication data recovered."
+        },
+
+        {
+            id: "COMM-JK-002",
+            status: "ENCRYPTED",
+            contact: "CONSTELLATION",
+            location: "UNKNOWN",
+            language: "KOREAN",
+            sender: "CONSTELLATION",
+            message: "[ ENCRYPTED MESSAGE ]"
+        }
+
+    ];
+
+
+    function getCommunications() {
+
+        const saved =
+            localStorage.getItem(storageKey);
+
+        if (saved) {
+
+            return JSON.parse(saved);
+
+        }
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(originalCommunications)
+        );
+
+        return originalCommunications;
+
+    }
+
+
+    function renderCommunications() {
+
+        const container =
+            document.getElementById(
+                "communicationsContainer"
+            );
+
+        const communications =
+            getCommunications();
+
+        container.innerHTML = "";
+
+        communications.forEach(
+            (communication, index) => {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "communication";
+
+                div.innerHTML = `
+
+                    <h2>
+                        [ ${escapeHTML(communication.id)} ]
+                    </h2>
+
+                    <div class="field">
+                        <span class="label">STATUS:</span>
+                        ${escapeHTML(communication.status)}
+                    </div>
+
+                    <div class="field">
+                        <span class="label">CONTACT:</span>
+                        ${escapeHTML(communication.contact)}
+                    </div>
+
+                    <div class="field">
+                        <span class="label">LOCATION:</span>
+                        ${escapeHTML(communication.location)}
+                    </div>
+
+                    <div class="field">
+                        <span class="label">LANGUAGE:</span>
+                        ${escapeHTML(communication.language)}
+                    </div>
+
+                    <div class="field">
+                        <span class="label">SENDER:</span>
+                        ${escapeHTML(communication.sender)}
+                    </div>
+
+                    <div class="message">
+                        <span class="label">MESSAGE:</span>
+
+                        <br><br>
+
+                        ${escapeHTML(communication.message)}
+                    </div>
+
+                    <br>
+
+                    <button
+                        onclick="editCommunication(${index})"
+                    >
+                        [ EDIT ]
+                    </button>
+
+                `;
+
+                container.appendChild(div);
+
+            }
+        );
+
+    }
+
+
+    function toggleEditor() {
+
+        const editor =
+            document.getElementById("editor");
+
+        if (editor.style.display === "block") {
+
+            editor.style.display = "none";
+
+        } else {
+
+            editor.style.display = "block";
+
+        }
+
+    }
+
+
+    function newCommunication() {
+
+        clearEditor();
+
+        document.getElementById(
+            "editor"
+        ).style.display = "block";
+
+    }
+
+
+    function editCommunication(index) {
+
+        const communications =
+            getCommunications();
+
+        const communication =
+            communications[index];
+
+        document.getElementById(
+            "editIndex"
+        ).value = index;
+
+        document.getElementById(
+            "communicationId"
+        ).value = communication.id;
+
+        document.getElementById(
+            "communicationStatus"
+        ).value = communication.status;
+
+        document.getElementById(
+            "communicationContact"
+        ).value = communication.contact;
+
+        document.getElementById(
+            "communicationLocation"
+        ).value = communication.location;
+
+        document.getElementById(
+            "communicationLanguage"
+        ).value = communication.language;
+
+        document.getElementById(
+            "communicationSender"
+        ).value = communication.sender;
+
+        document.getElementById(
+            "communicationMessage"
+        ).value = communication.message;
+
+        document.getElementById(
+            "editor"
+        ).style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function saveCommunication() {
+
+        const communications =
+            getCommunications();
+
+        const index =
+            document.getElementById(
+                "editIndex"
+            ).value;
+
+        const newCommunicationData = {
+
+            id: document.getElementById(
+                "communicationId"
+            ).value,
+
+            status: document.getElementById(
+                "communicationStatus"
+            ).value,
+
+            contact: document.getElementById(
+                "communicationContact"
+            ).value,
+
+            location: document.getElementById(
+                "communicationLocation"
+            ).value,
+
+            language: document.getElementById(
+                "communicationLanguage"
+            ).value,
+
+            sender: document.getElementById(
+                "communicationSender"
+            ).value,
+
+            message: document.getElementById(
+                "communicationMessage"
+            ).value
+
+        };
+
+
+        if (index === "") {
+
+            communications.push(
+                newCommunicationData
+            );
+
+        } else {
+
+            communications[index] =
+                newCommunicationData;
+
+        }
+
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(communications)
+        );
+
+
+        renderCommunications();
+
+        clearEditor();
+
+        document.getElementById(
+            "editor"
+        ).style.display = "none";
+
+    }
+
+
+    function deleteCommunication() {
+
+        const index =
+            document.getElementById(
+                "editIndex"
+            ).value;
+
+        if (index === "") {
+
+            return;
+
+        }
+
+
+        const communications =
+            getCommunications();
+
+        communications.splice(index, 1);
+
+
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify(communications)
+        );
+
+
+        renderCommunications();
+
+        clearEditor();
+
+    }
+
+
+    function clearEditor() {
+
+        document.getElementById(
+            "editIndex"
+        ).value = "";
+
+        document.getElementById(
+            "communicationId"
+        ).value = "";
+
+        document.getElementById(
+            "communicationStatus"
+        ).value = "";
+
+        document.getElementById(
+            "communicationContact"
+        ).value = "";
+
+        document.getElementById(
+            "communicationLocation"
+        ).value = "";
+
+        document.getElementById(
+            "communicationLanguage"
+        ).value = "";
+
+        document.getElementById(
+            "communicationSender"
+        ).value = "";
+
+        document.getElementById(
+            "communicationMessage"
+        ).value = "";
+
+    }
+
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    renderCommunications();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>VITALE // PERSONALE</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    padding: 40px;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.file {
+    border: 1px solid #477;
+    padding: 15px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.file:hover {
+    border-color: #00ff66;
+}
+
+.dim {
+    color: #477;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    margin-top: 30px;
+    color: #00ff66;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div>VITALE // PERSONALE</div>
+
+<div class="dim">
+------------------------------------------
+</div>
+
+<br>
+
+<div>> ARCHIVIO PERSONALE</div>
+<div>> ACCESSO AUTORIZZATO</div>
+
+<br>
+
+<div class="file" onclick="openFile('alessio')">
+    📄 SOGGETTO_001 // ALESSIO
+</div>
+
+<div class="file" onclick="openFile('atlas')">
+    📄 SOGGETTO_002 // ATLAS
+</div>
+
+<div class="file" onclick="openFile('stefano')">
+    📄 RESPONSABILE // STEFANO VITALE
+</div>
+
+
+<div id="alessio" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // SOGGETTO_001</div>
+
+    <br>
+
+    <div>
+        NOME: ALESSIO VITALE
+    </div>
+
+    <div>
+        NOME UTILIZZATO: KAITO
+    </div>
+
+    <div>
+        STATO: RISERVATO
+    </div>
+
+    <br>
+
+    <div class="dim">
+        ULTERIORI INFORMAZIONI: ACCESSO LIMITATO
+    </div>
+
+</div>
+
+
+<div id="atlas" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // SOGGETTO_002</div>
+
+    <br>
+
+    <div>
+        NOME: ATLAS VITALE
+    </div>
+
+    <div>
+        STATO: SCONOSCIUTO
+    </div>
+
+    <br>
+
+    <div class="dim">
+        ULTIMA LOCALIZZAZIONE: RISERVATA
+    </div>
+
+</div>
+
+
+<div id="stefano" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // RESPONSABILE</div>
+
+    <br>
+
+    <div>
+        NOME: STEFANO VITALE
+    </div>
+
+    <div>
+        RUOLO: RESPONSABILE DEL PROGETTO
+    </div>
+
+    <br>
+
+    <div class="dim">
+        STATO DEL FILE: CLASSIFICATO
+    </div>
+
+</div>
+
+
+<div class="back" onclick="window.location.href='archive006.html'">
+    &lt; TORNA ALL'ARCHIVIO
+</div>
+
+</div>
+
+
+<script>
+
+function openFile(file) {
+
+    document.getElementById(file).classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>

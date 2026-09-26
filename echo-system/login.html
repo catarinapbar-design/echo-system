@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ECHO // LOGIN</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #000;
+            color: #00ff66;
+            font-family: "Courier New", monospace;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .terminal {
+            width: 100%;
+            max-width: 760px;
+            margin: auto;
+        }
+
+        .header {
+            border-bottom: 1px solid #00ff66;
+            padding-bottom: 18px;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #00cc55;
+        }
+
+        .content {
+            border: 1px solid #00ff66;
+            padding: 25px;
+            background: #020202;
+        }
+
+        .line {
+            margin: 6px 0;
+            line-height: 1.7;
+        }
+
+        .warning {
+            margin-top: 25px;
+            padding: 15px;
+            border-left: 2px solid #00ff66;
+            background: #010101;
+            color: #00cc55;
+            line-height: 1.7;
+        }
+
+        .field {
+            margin-top: 22px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ff66;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            height: 46px;
+            padding: 10px 14px;
+
+            background: #000;
+            border: 1px solid #00ff66;
+
+            outline: none;
+
+            color: #00ff66;
+
+            font-family: "Courier New", monospace;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #ffffff;
+        }
+
+        input::placeholder {
+            color: #006b30;
+        }
+
+        button {
+            margin-top: 25px;
+
+            padding: 13px 18px;
+
+            background: #020202;
+            border: 1px solid #00ff66;
+
+            color: #00ff66;
+
+            font-family: "Courier New", monospace;
+            font-size: 15px;
+
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #00ff66;
+            color: #000;
+        }
+
+        #status {
+            margin-top: 22px;
+            min-height: 60px;
+            line-height: 1.7;
+        }
+
+        .denied {
+            color: #ff5555 !important;
+        }
+
+        .granted {
+            color: #00ff66 !important;
+        }
+
+        .footer {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #003d19;
+            color: #008f3c;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 21px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="terminal">
+
+
+    <div class="header">
+
+        <div class="title">
+            ECHO // LOGIN
+        </div>
+
+        <div class="subtitle">
+            SECURE SYSTEM // AUTHORIZATION REQUIRED
+        </div>
+
+    </div>
+
+
+    <div class="content">
+
+
+        <p class="line">
+            &gt; K.A.I.T.O. // SECURITY PROTOCOL
+        </p>
+
+        <p class="line">
+            &gt; ENCRYPTION: ACTIVE
+        </p>
+
+        <p class="line">
+            &gt; AUTHORIZATION: REQUIRED
+        </p>
+
+
+        <div class="warning">
+
+            &gt; KA1T0 DOES NOT LEAVE<br>
+            &gt; IMPORTANT INFORMATION<br>
+            &gt; IN PLAIN TEXT.
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="userID">
+                &gt; USER ID:
+            </label>
+
+            <input
+                type="text"
+                id="userID"
+                placeholder="ENTER USER ID"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="password">
+                &gt; PASSWORD:
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="ENTER PASSWORD"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            onclick="authenticate()"
+        >
+            [ AUTHENTICATE ]
+        </button>
+
+
+        <div id="status"></div>
+
+
+        <div class="footer">
+
+            ECHO SYSTEM // SECURE LOGIN<br>
+            ALL AUTHENTICATION ATTEMPTS ARE LOGGED
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    /* ================================
+       SYSTEM LOG
+    ================================ */
+
+    function saveLog(
+        type,
+        userID,
+        action = "LOGIN",
+        system = "ECHO // LOGIN",
+        access = ""
+    ) {
+
+        const logs =
+            JSON.parse(
+                localStorage.getItem(
+                    "echoSystemLogs"
+                ) || "[]"
+            );
+
+
+        const now =
+            new Date();
+
+
+        let message = "";
+
+
+        if (type === "SUCCESS") {
+
+            message =
+                "AUTHORIZED ACCESS";
+
+        } else {
+
+            message =
+                "FAILED AUTHENTICATION";
+
+        }
+
+
+        logs.push({
+
+            date:
+                now.toLocaleDateString(),
+
+            time:
+                now.toLocaleTimeString(),
+
+            type:
+                type,
+
+            user:
+                userID || "UNKNOWN",
+
+            action:
+                action,
+
+            system:
+                system,
+
+            access:
+                access,
+
+            message:
+                message
+
+        });
+
+
+        localStorage.setItem(
+            "echoSystemLogs",
+            JSON.stringify(logs)
+        );
+
+    }
+
+
+    /* ================================
+       AUTHENTICATION
+    ================================ */
+
+    function authenticate() {
+
+        const userID =
+            document
+                .getElementById("userID")
+                .value
+                .trim()
+                .toUpperCase();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const status =
+            document.getElementById("status");
+
+
+        /* ============================
+           K41T0 / ROOT
+        ============================ */
+
+        if (
+            userID === "K41T0" &&
+            password === "ESSENZADELMARE"
+        ) {
+
+
+            localStorage.setItem(
+                "currentUser",
+                "K41T0"
+            );
+
+
+            localStorage.setItem(
+                "currentAccess",
+                "ROOT"
+            );
+
+
+            saveLog(
+                "SUCCESS",
+                userID,
+                "LOGIN",
+                "ECHO // SYSTEM",
+                "ROOT"
+            );
+
+
+            status.className =
+                "granted";
+
+
+            status.innerHTML =
+                "&gt; USER ID VERIFIED<br>" +
+                "&gt; PASSWORD VERIFIED<br>" +
+                "&gt; ACCESS LEVEL: ROOT<br>" +
+                "&gt; ACCESS GRANTED<br>" +
+                "&gt; INITIALIZING SYSTEM...";
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                1200
+            );
+
+
+            return;
+
+        }
+
+
+        /* ============================
+           JUNGKOOK / AUTHORIZED
+        ============================ */
+
+        if (
+            userID === "JUNGKOOK" &&
+            password === "CONSTELACAO"
+        ) {
+
+
+            localStorage.setItem(
+                "currentUser",
+                "JUNGKOOK"
+            );
+
+
+            localStorage.setItem(
+                "currentAccess",
+                "AUTHORIZED"
+            );
+
+
+            saveLog(
+                "SUCCESS",
+                userID,
+                "LOGIN",
+                "ECHO // SYSTEM",
+                "AUTHORIZED"
+            );
+
+
+            status.className =
+                "granted";
+
+
+            status.innerHTML =
+                "&gt; USER ID VERIFIED<br>" +
+                "&gt; PASSWORD VERIFIED<br>" +
+                "&gt; SUBJECT: RÉMY BATHORY<br>" +
+                "&gt; ACCESS LEVEL: AUTHORIZED<br>" +
+                "&gt; ACCESS GRANTED<br>" +
+                "&gt; INITIALIZING SYSTEM...";
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "jungkook/index.html";
+
+                },
+                1200
+            );
+
+
+            return;
+
+        }
+
+
+        /* ============================
+           AMELI / SECONDARY
+        ============================ */
+
+        if (
+            userID === "AMELI" &&
+            password === "250911"
+        ) {
+
+
+            localStorage.setItem(
+                "currentUser",
+                "AMELI"
+            );
+
+
+            localStorage.setItem(
+                "currentAccess",
+                "SECONDARY"
+            );
+
+
+            saveLog(
+                "SUCCESS",
+                userID,
+                "LOGIN",
+                "ECHO // SYSTEM",
+                "SECONDARY"
+            );
+
+
+            status.className =
+                "granted";
+
+
+            status.innerHTML =
+                "&gt; USER ID VERIFIED<br>" +
+                "&gt; PASSWORD VERIFIED<br>" +
+                "&gt; SUBJECT: AMELI BLACKWOOD<br>" +
+                "&gt; ACCESS LEVEL: SECONDARY<br>" +
+                "&gt; ACCESS GRANTED<br>" +
+                "&gt; INITIALIZING SYSTEM...";
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "ameli/index.html";
+
+                },
+                1200
+            );
+
+
+            return;
+
+        }
+
+
+        /* ============================
+           ACCESS DENIED
+        ============================ */
+
+        localStorage.removeItem(
+            "currentUser"
+        );
+
+        localStorage.removeItem(
+            "currentAccess"
+        );
+
+
+        saveLog(
+            "FAILED",
+            userID,
+            "LOGIN",
+            "ECHO // LOGIN",
+            "NONE"
+        );
+
+
+        status.className =
+            "denied";
+
+
+        status.innerHTML =
+            "&gt; ACCESS DENIED<br>" +
+            "&gt; INVALID USER ID OR PASSWORD.";
+
+    }
+
+
+    /* ================================
+       ENTER = LOGIN
+    ================================ */
+
+    document
+        .getElementById("password")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    authenticate();
+
+                }
+
+            }
+        );
+
+
+</script>
+
+</body>
+
+</html>

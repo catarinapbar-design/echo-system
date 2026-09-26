@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VITALE // ARCHIVE FRAGMENT</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #030303;
+            color: #cfcfcf;
+            font-family: "Courier New", monospace;
+        }
+
+        .terminal {
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #777;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 70px auto;
+        }
+
+        .boot {
+            color: #666;
+            line-height: 2;
+            margin-bottom: 45px;
+        }
+
+        h1 {
+            color: white;
+            letter-spacing: 4px;
+        }
+
+        .box {
+            border: 1px solid #292929;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .fragment {
+            margin-top: 30px;
+            padding: 25px;
+            border: 1px solid #222;
+            color: #aaa;
+            line-height: 2;
+        }
+
+        .numbers {
+            color: white;
+            letter-spacing: 5px;
+            margin-top: 25px;
+        }
+
+        input {
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px;
+            background: #050505;
+            border: 1px solid #444;
+            color: white;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #888;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 14px 25px;
+            background: transparent;
+            border: 1px solid #555;
+            color: white;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #151515;
+        }
+
+        #message {
+            margin-top: 25px;
+            min-height: 25px;
+            color: #888;
+        }
+
+        .footer {
+            margin-top: 70px;
+            color: #444;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="terminal">
+
+    <header>
+
+        <div class="logo">
+            VITALE // ARCHIVE
+        </div>
+
+        <div class="status">
+            ● PARTIAL ACCESS
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <div class="boot">
+
+            > SECURITY LAYER 01 BYPASSED<br>
+            > PARTIAL KEY ACCEPTED<br>
+            > SEARCHING ARCHIVE FRAGMENTS...<br>
+            > 1 FRAGMENT RECOVERED
+
+        </div>
+
+
+        <h1>
+            ARCHIVE FRAGMENT
+        </h1>
+
+
+        <div class="box">
+
+            <div>
+                FILE: 007_NULL
+            </div>
+
+            <div>
+                STATUS: RECOVERED
+            </div>
+
+
+            <div class="fragment">
+
+                E &nbsp; S &nbsp; S &nbsp; E &nbsp; N &nbsp; Z &nbsp; A
+
+                <br><br>
+
+                <span class="numbers">
+                    11 - 1 - 9 - 20 - 15
+                </span>
+
+                <br><br>
+
+                > DATA INCOMPLETE
+
+            </div>
+
+
+            <input
+                type="text"
+                id="answer"
+                placeholder="ENTER RECOVERED WORD..."
+                autocomplete="off"
+            >
+
+
+            <button onclick="checkAnswer()">
+                [ SUBMIT ]
+            </button>
+
+
+            <div id="message"></div>
+
+        </div>
+
+
+        <div class="footer">
+
+            VITALE PRIVATE STORAGE<br>
+            ARCHIVE FRAGMENT // 007_NULL
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function checkAnswer() {
+
+    const answer =
+        document.getElementById("answer")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const message =
+        document.getElementById("message");
+
+
+    if (answer === "KAITO") {
+
+        message.innerText =
+        "> PATTERN CONFIRMED.";
+
+        setTimeout(function() {
+
+            window.location.href =
+            "stage3.html";
+
+        }, 1200);
+
+    }
+
+    else {
+
+        message.innerText =
+        "> PATTERN NOT RECOGNIZED.";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

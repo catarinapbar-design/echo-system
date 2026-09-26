@@ -1,0 +1,228 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: #050505;
+    color: #eeeeee;
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* ==============================
+   MAIN TERMINAL
+   ============================== */
+
+.terminal {
+    width: 100%;
+    min-height: 100vh;
+    padding: 48px 6%;
+}
+
+/* ==============================
+   TITLES
+   ============================== */
+
+h1 {
+    margin: 0;
+    padding-bottom: 20px;
+
+    color: #f2f2f2;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    border-bottom: 1px solid #777777;
+}
+
+/* ==============================
+   SYSTEM TEXT
+   ============================== */
+
+p {
+    margin: 7px 0;
+
+    color: #dddddd;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* ==============================
+   HOME MENU
+   ============================== */
+
+.menu {
+    width: 720px;
+    max-width: 90%;
+    margin: 110px auto 0;
+}
+
+.menu a {
+    display: block;
+
+    margin: 15px 0;
+    padding: 18px 20px;
+
+    border: 1px solid #606060;
+
+    background: #080808;
+
+    color: #eeeeee;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+
+    text-decoration: none;
+
+    transition: background 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.menu a:hover {
+    background: #111111;
+    border-color: #aaaaaa;
+    color: #ffffff;
+}
+
+/* ==============================
+   DATABASE BOXES
+   ============================== */
+
+.box,
+.coordinate {
+    max-width: 900px;
+
+    margin: 28px auto;
+    padding: 24px;
+
+    border: 1px solid #606060;
+
+    background: #070707;
+}
+
+/* ==============================
+   DATABASE TITLES
+   ============================== */
+
+.coordinate-title {
+    margin-bottom: 16px;
+
+    color: #ffffff;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ==============================
+   LINKS
+   ============================== */
+
+a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* ==============================
+   BUTTONS
+   ============================== */
+
+button {
+    padding: 13px 24px;
+
+    border: 1px solid #777777;
+
+    background: #080808;
+    color: #eeeeee;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #eeeeee;
+    color: #050505;
+}
+
+/* ==============================
+   INPUTS
+   ============================== */
+
+input {
+    padding: 13px;
+
+    border: 1px solid #666666;
+
+    background: #090909;
+    color: #ffffff;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #aaaaaa;
+}
+
+/* ==============================
+   FOOTER
+   ============================== */
+
+.footer {
+    margin-top: 70px;
+    padding-top: 18px;
+
+    border-top: 1px solid #555555;
+
+    color: #999999;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+}
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 700px) {
+
+    .terminal {
+        padding: 32px 5%;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    .menu {
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    .menu a {
+        font-size: 13px;
+        padding: 16px;
+    }
+}

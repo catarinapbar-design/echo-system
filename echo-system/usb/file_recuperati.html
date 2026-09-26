@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>VITALE // FILE RECUPERATI</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    padding: 40px;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.file {
+    border: 1px solid #477;
+    padding: 18px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.file:hover {
+    border-color: #00ff66;
+}
+
+.dim {
+    color: #477;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    margin-top: 30px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div>VITALE // FILE RECUPERATI</div>
+
+<div class="dim">
+------------------------------------------
+</div>
+
+<br>
+
+<div>> DATI RECUPERATI</div>
+<div>> ORIGINE: VALDOMBRA</div>
+<div>> STATO: PARZIALMENTE DANNEGGIATO</div>
+
+<br>
+
+<div class="file" onclick="openFile('diario')">
+    📄 DIARIO_PERSONALE_006
+</div>
+
+<div class="file" onclick="openFile('foto')">
+    🖼 FOTO_RECUPERATA_006
+</div>
+
+<div class="file" onclick="openFile('nota')">
+    📄 NOTA_MANOSCRITTA
+</div>
+
+
+<div id="diario" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // DIARIO_PERSONALE_006</div>
+
+    <br>
+
+    <div>DATA: [DANNEGGIATA]</div>
+
+    <br>
+
+    <div>
+        Il mare è l'unico posto in cui
+        riesco ancora a sentirmi libero.
+    </div>
+
+    <div>
+        Mi hanno insegnato a ricordare.
+        Io ho imparato a non dimenticare.
+    </div>
+
+    <br>
+
+    <div class="dim">
+        FIRMA: K.
+    </div>
+
+</div>
+
+
+<div id="foto" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // FOTO_RECUPERATA_006</div>
+
+    <br>
+
+    <div>
+        [IMMAGINE NON DISPONIBILE]
+    </div>
+
+    <br>
+
+    <div class="dim">
+        DESCRIZIONE:
+    </div>
+
+    <div>
+        Un ragazzo davanti al mar.
+    </div>
+
+    <div>
+        Data stimata: 2018
+    </div>
+
+</div>
+
+
+<div id="nota" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // NOTA_MANOSCRITTA</div>
+
+    <br>
+
+    <div>
+        "Quando tutto questo finirà,
+        non tornare dove tutto è iniziato."
+    </div>
+
+    <br>
+
+    <div>
+        "Cerca il luogo dove il mare
+        incontra la memoria."
+    </div>
+
+    <br>
+
+    <div class="dim">
+        ORIGINE: SCONOSCIUTA
+    </div>
+
+</div>
+
+
+<div class="back" onclick="window.location.href='archive006.html'">
+    &lt; TORNA ALL'ARCHIVIO
+</div>
+
+</div>
+
+<script>
+
+function openFile(file) {
+    document.getElementById(file).classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>

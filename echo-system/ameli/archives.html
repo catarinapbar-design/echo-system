@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ECHO // AMELI ARCHIVES</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    padding: 30px;
+
+}
+
+.terminal {
+
+    width: 1000px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    background: #070707;
+
+    border: 1px solid #39ff88;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.30),
+        0 0 45px rgba(57,255,136,.08);
+
+}
+
+.header {
+
+    padding: 22px 28px;
+
+    border-bottom: 1px solid #39ff88;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 8px #39ff88,
+        0 0 20px rgba(57,255,136,.5);
+
+}
+
+.content {
+
+    padding: 32px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+.file {
+
+    margin: 25px 0;
+
+    padding: 20px;
+
+    border: 1px solid #39ff88;
+
+    background: rgba(57,255,136,.025);
+
+}
+
+.file-title {
+
+    color: #ffffff;
+
+    margin-bottom: 15px;
+
+}
+
+textarea {
+
+    width: 100%;
+
+    min-height: 180px;
+
+    background: #020202;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    padding: 14px;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 15px;
+
+    outline: none;
+
+    resize: vertical;
+
+}
+
+textarea:focus {
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.25);
+
+}
+
+button {
+
+    margin-top: 12px;
+
+    padding: 11px 18px;
+
+    border: 1px solid #39ff88;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    cursor: pointer;
+
+}
+
+button:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+a {
+
+    display: block;
+
+    margin-top: 25px;
+
+    padding: 13px 18px;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    text-decoration: none;
+
+}
+
+a:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="terminal">
+
+    <div class="header">
+        ECHO // AMELI ARCHIVES
+    </div>
+
+    <div class="content">
+
+        <p>
+            &gt; USER: AMELI
+        </p>
+
+        <p>
+            &gt; ARCHIVE STATUS: UNLOCKED
+        </p>
+
+        <p>
+            &gt; PERSONAL FILE STORAGE: ACTIVE
+        </p>
+
+
+        <div id="files"></div>
+
+
+        <button onclick="createFile()">
+            [ + CREATE NEW FILE ]
+        </button>
+
+
+        <a href="index.html">
+            [00] RETURN TO AMELI SYSTEM
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const storageKey = "ameliPersonalFiles";
+
+
+function loadFiles() {
+
+    const container =
+        document.getElementById("files");
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (files.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="file">
+
+                <div class="file-title">
+                    &gt; NO PERSONAL FILES FOUND.
+                </div>
+
+                <div>
+                    &gt; CREATE A NEW FILE TO BEGIN.
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    files.forEach(function(file, index) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "file";
+
+
+        div.innerHTML = `
+
+            <div class="file-title">
+                FILE // ${escapeHTML(file.name)}
+            </div>
+
+            <textarea
+                id="file-${index}"
+            >${escapeHTML(file.content)}</textarea>
+
+            <br>
+
+            <button
+                onclick="saveFile(${index})"
+            >
+                [ SAVE ]
+            </button>
+
+            <button
+                onclick="deleteFile(${index})"
+            >
+                [ DELETE ]
+            </button>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+function createFile() {
+
+    const name =
+        prompt("FILE NAME:");
+
+    if (!name) {
+
+        return;
+
+    }
+
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    files.push({
+
+        name: name,
+
+        content: ""
+
+    });
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(files)
+    );
+
+
+    loadFiles();
+
+}
+
+
+function saveFile(index) {
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    const textarea =
+        document.getElementById(
+            "file-" + index
+        );
+
+
+    files[index].content =
+        textarea.value;
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(files)
+    );
+
+
+    alert("FILE SAVED.");
+
+}
+
+
+function deleteFile(index) {
+
+    if (
+        !confirm("DELETE THIS FILE?")
+    ) {
+
+        return;
+
+    }
+
+
+    const files =
+        JSON.parse(
+            localStorage.getItem(storageKey) || "[]"
+        );
+
+
+    files.splice(index, 1);
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(files)
+    );
+
+
+    loadFiles();
+
+}
+
+
+function escapeHTML(text) {
+
+    return text
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+loadFiles();
+
+</script>
+
+</body>
+
+</html>

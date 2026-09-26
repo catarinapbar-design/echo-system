@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VITALE // USB STORAGE</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #030303;
+            color: #cfcfcf;
+            font-family: "Courier New", monospace;
+        }
+
+        .terminal {
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #777;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 80px auto;
+        }
+
+        .boot {
+            color: #777;
+            line-height: 2;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+
+        .device {
+            border: 1px solid #292929;
+            padding: 25px;
+            margin-top: 30px;
+            line-height: 2;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 18px;
+            border: 1px solid #444;
+            margin-top: 25px;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #aaa;
+            transition: width 0.3s;
+        }
+
+        #continue {
+            display: none;
+            margin-top: 40px;
+            padding: 15px 25px;
+            border: 1px solid #555;
+            background: transparent;
+            color: white;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        #continue:hover {
+            background: #151515;
+        }
+
+        .warning {
+            color: #777;
+            margin-top: 30px;
+        }
+
+        .footer {
+            margin-top: 80px;
+            color: #444;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="terminal">
+
+
+    <header>
+
+        <div class="logo">
+            VITALE // SECURE USB
+        </div>
+
+        <div class="status">
+            ● DEVICE DETECTED
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <div class="boot">
+
+            > INITIALIZING SECURE USB INTERFACE...<br>
+
+            > CONNECTION: LOCAL<br>
+
+            > DEVICE DETECTED<br>
+
+            > IDENTIFYING STORAGE...
+
+        </div>
+
+
+        <h1>
+            VITALE // VT-006
+        </h1>
+
+
+        <div class="device">
+
+            DEVICE STATUS: <span id="deviceStatus">
+            ANALYZING
+            </span>
+
+            <br>
+
+            DEVICE ID:
+            VT-006
+
+            <br>
+
+            OWNER:
+            STEFANO VITALE
+
+            <br>
+
+            STORAGE:
+            ENCRYPTED
+
+
+            <div class="progress-container">
+
+                <div
+                    class="progress"
+                    id="progress">
+                </div>
+
+            </div>
+
+
+            <p id="process">
+                > MOUNTING DEVICE...
+            </p>
+
+
+            <button
+                id="continue"
+                onclick="continueAccess()">
+
+                [ ACCESS ENCRYPTED PARTITION ]
+
+            </button>
+
+        </div>
+
+
+        <p class="warning" id="warning">
+
+            > WARNING: UNAUTHORIZED ACCESS WILL BE LOGGED.
+
+        </p>
+
+
+        <div class="footer">
+
+            VITALE PRIVATE NETWORK<br>
+            STORAGE NODE: VT-006
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+let progress = 0;
+
+let bar = document.getElementById("progress");
+
+let process = document.getElementById("process");
+
+let status = document.getElementById("deviceStatus");
+
+let button = document.getElementById("continue");
+
+
+let loading = setInterval(function() {
+
+    progress += 5;
+
+    bar.style.width = progress + "%";
+
+
+    if (progress < 30) {
+
+        process.innerText =
+        "> MOUNTING DEVICE...";
+
+    }
+
+    else if (progress < 60) {
+
+        process.innerText =
+        "> ANALYZING FILE STRUCTURE...";
+
+    }
+
+    else if (progress < 85) {
+
+        process.innerText =
+        "> ENCRYPTED PARTITION FOUND...";
+
+    }
+
+    else {
+
+        process.innerText =
+        "> SECURITY LAYER DETECTED...";
+
+    }
+
+
+    if (progress >= 100) {
+
+        clearInterval(loading);
+
+        status.innerText =
+        "ENCRYPTED";
+
+        process.innerText =
+        "> ACCESS KEY REQUIRED.";
+
+        button.style.display =
+        "inline-block";
+
+    }
+
+}, 150);
+
+
+function continueAccess() {
+
+    window.location.href =
+    "decrypt.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

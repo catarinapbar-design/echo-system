@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ECHO // SYSTEM</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    padding: 30px;
+
+}
+
+.terminal {
+
+    width: 1000px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    background: #070707;
+
+    border: 1px solid #39ff88;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.30),
+        0 0 45px rgba(57,255,136,.08);
+
+}
+
+.header {
+
+    padding: 22px 28px;
+
+    border-bottom: 1px solid #39ff88;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 8px #39ff88,
+        0 0 20px rgba(57,255,136,.5);
+
+}
+
+.content {
+
+    padding: 32px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+.line {
+
+    margin: 5px 0;
+
+}
+
+.system-info {
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-left: 1px solid #39ff88;
+
+    background: rgba(57,255,136,.025);
+
+}
+
+.system-info p {
+
+    margin: 4px 0;
+
+}
+
+.section {
+
+    margin-top: 30px;
+
+}
+
+.section-title {
+
+    margin-bottom: 15px;
+
+    color: #ffffff;
+
+}
+
+.menu {
+
+    display: block;
+
+    width: 100%;
+
+    margin: 12px 0;
+
+    padding: 13px 18px;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    text-decoration: none;
+
+    background: #070707;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 16px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+}
+
+.menu:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+.login-panel {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border: 1px solid #39ff88;
+
+    background: rgba(57,255,136,.025);
+
+}
+
+.login-panel p {
+
+    margin: 5px 0;
+
+}
+
+.login-panel input {
+
+    width: 100%;
+
+    height: 45px;
+
+    margin-top: 15px;
+
+    padding: 10px 14px;
+
+    background: #020202;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    outline: none;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 16px;
+
+}
+
+.login-panel input:focus {
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.25);
+
+}
+
+.verify {
+
+    margin-top: 15px;
+
+    padding: 11px 18px;
+
+    border: 1px solid #39ff88;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    cursor: pointer;
+
+}
+
+.verify:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+#error {
+
+    margin-top: 12px;
+
+    color: #ff5555;
+
+}
+
+.restricted {
+
+    color: #8cffb8;
+
+    font-size: 14px;
+
+    margin-top: 25px;
+
+}
+
+.footer {
+
+    margin-top: 35px;
+
+    color: #6effa5;
+
+}
+
+#mainSystem {
+
+    display: none;
+
+}
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    .header {
+
+        font-size: 20px;
+
+        padding: 18px;
+
+    }
+
+    .content {
+
+        padding: 20px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="terminal">
+
+
+    <div class="header">
+        ECHO // SYSTEM
+    </div>
+
+
+    <!-- ================================
+         LOGIN
+    ================================= -->
+
+    <div class="content" id="loginScreen">
+
+        <p class="line">
+            &gt; SYSTEM ONLINE
+        </p>
+
+        <p class="line">
+            &gt; CONNECTION: SECURE
+        </p>
+
+
+        <div class="system-info">
+
+            <p>
+                &gt; SYSTEM: VITALE
+            </p>
+
+            <p>
+                &gt; ENCRYPTION: ACTIVE
+            </p>
+
+            <p>
+                &gt; AUTHORIZATION: REQUIRED
+            </p>
+
+            <p>
+                &gt; ACCESS: RESTRICTED
+            </p>
+
+        </div>
+
+
+        <div class="section">
+
+            <p class="section-title">
+                &gt; USER AUTHENTICATION:
+            </p>
+
+
+            <div class="login-panel">
+
+                <p>
+                    &gt; ENTER USER IDENTIFICATION.
+                </p>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="ENTER USER"
+                    autocomplete="off"
+                >
+
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="ENTER PASSWORD"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="verify"
+                    type="button"
+                    onclick="authenticate()"
+                >
+                    [ AUTHENTICATE ]
+                </button>
+
+
+                <div id="error"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="restricted">
+
+            &gt; UNAUTHORIZED ACCESS IS LOGGED.<br>
+
+            &gt; ALL CONNECTIONS ARE MONITORED.<br>
+
+            &gt; VITALE SYSTEM // PRIVATE NETWORK.
+
+        </div>
+
+
+        <div class="footer">
+
+            &gt; ECHO SYSTEM READY.<br>
+
+            &gt; AUTHORIZATION REQUIRED.
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================
+         MAIN SYSTEM
+    ================================= -->
+
+    <div class="content" id="mainSystem">
+
+        <p class="line">
+            &gt; SYSTEM ONLINE
+        </p>
+
+        <p class="line">
+            &gt; CONNECTION: SECURE
+        </p>
+
+
+        <div class="system-info">
+
+            <p>
+                &gt; USER:
+                <span id="currentUser">
+                    K41T0
+                </span>
+            </p>
+
+            <p>
+                &gt; ACCESS LEVEL: AUTHORIZED
+            </p>
+
+            <p>
+                &gt; CLEARANCE: ROOT
+            </p>
+
+            <p>
+                &gt; DATABASE: ONLINE
+            </p>
+
+        </div>
+
+
+        <div class="section">
+
+            <p class="section-title">
+                &gt; AVAILABLE SYSTEMS:
+            </p>
+
+
+            <a
+                class="menu"
+                href="coordinates/index.html"
+                onclick="logAccess('GLOBAL LOCATION DATABASE')"
+            >
+                [01] GLOBAL LOCATION DATABASE
+            </a>
+
+
+            <a
+                class="menu"
+                href="usb/index.html"
+                onclick="logAccess('USB STORAGE // VT-006')"
+            >
+                [02] USB STORAGE // VT-006
+            </a>
+
+
+            <a
+                class="menu"
+                href="archive006.html"
+                onclick="logAccess('VITALE ARCHIVES')"
+            >
+                [03] VITALE ARCHIVES
+            </a>
+
+
+            <a
+                class="menu"
+                href="logs/index.html"
+                onclick="logAccess('SYSTEM LOG')"
+            >
+                [04] SYSTEM LOG
+            </a>
+
+
+        </div>
+
+
+        <div class="restricted">
+
+            &gt; ROOT ACCESS ACTIVE.<br>
+
+            &gt; ALL VITALE SYSTEMS AVAILABLE.<br>
+
+            &gt; SESSION IS BEING MONITORED.
+
+        </div>
+
+
+        <div class="footer">
+
+            &gt; ECHO SYSTEM READY.<br>
+
+            &gt; USER SESSION:
+            <span id="sessionUser">
+                K41T0
+            </span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/*
+=====================================
+AUTHENTICATION
+=====================================
+*/
+
+function authenticate() {
+
+    const username =
+        document
+            .getElementById("username")
+            .value
+            .trim()
+            .toUpperCase();
+
+    const password =
+        document
+            .getElementById("password")
+            .value;
+
+    const error =
+        document.getElementById("error");
+
+
+    error.textContent = "";
+
+
+    /*
+    =====================================
+    K41T0 // PRIMARY
+    =====================================
+    */
+
+    if (
+        username === "K41T0" &&
+        password === "ESSENZADELMARE"
+    ) {
+
+        localStorage.setItem(
+            "currentUser",
+            "K41T0"
+        );
+
+        localStorage.setItem(
+            "currentAccess",
+            "ROOT"
+        );
+
+        logLogin(
+            "K41T0",
+            "SUCCESS"
+        );
+
+        showMainSystem(
+            "K41T0"
+        );
+
+        return;
+
+    }
+
+
+    /*
+    =====================================
+    JUNGKOOK // SECONDARY
+    =====================================
+    */
+
+    if (
+        username === "JUNGKOOK" &&
+        password === "CONSTELACAO"
+    ) {
+
+        localStorage.setItem(
+            "currentUser",
+            "JUNGKOOK"
+        );
+
+        localStorage.setItem(
+            "currentAccess",
+            "SECONDARY"
+        );
+
+        logLogin(
+            "JUNGKOOK",
+            "SUCCESS"
+        );
+
+        window.location.href =
+            "jungkook/index.html";
+
+        return;
+
+    }
+
+
+    /*
+    =====================================
+    AMELI // SECONDARY
+    =====================================
+    */
+
+    if (
+        username === "AMELI" &&
+        password === "250911"
+    ) {
+
+        localStorage.setItem(
+            "currentUser",
+            "AMELI"
+        );
+
+        localStorage.setItem(
+            "currentAccess",
+            "SECONDARY"
+        );
+
+        logLogin(
+            "AMELI",
+            "SUCCESS"
+        );
+
+        window.location.href =
+            "ameli/index.html";
+
+        return;
+
+    }
+
+
+    /*
+    =====================================
+    ACCESS DENIED
+    =====================================
+    */
+
+    error.textContent =
+        "> ACCESS DENIED.";
+
+    logLogin(
+        username || "UNKNOWN",
+        "FAILED"
+    );
+
+}
+
+
+/*
+=====================================
+SHOW MAIN SYSTEM
+=====================================
+*/
+
+function showMainSystem(user) {
+
+    document
+        .getElementById("loginScreen")
+        .style.display = "none";
+
+    document
+        .getElementById("mainSystem")
+        .style.display = "block";
+
+    document
+        .getElementById("currentUser")
+        .textContent = user;
+
+    document
+        .getElementById("sessionUser")
+        .textContent = user;
+
+}
+
+
+/*
+=====================================
+SYSTEM LOG
+=====================================
+*/
+
+function logLogin(user, result) {
+
+    const logs =
+        JSON.parse(
+            localStorage.getItem(
+                "echoSystemLogs"
+            ) || "[]"
+        );
+
+    const now =
+        new Date();
+
+
+    logs.push({
+
+        date:
+            now.toLocaleDateString("en-GB"),
+
+        time:
+            now.toLocaleTimeString("en-GB"),
+
+        type:
+            result === "SUCCESS"
+                ? "SUCCESS"
+                : "FAILED",
+
+        user:
+            user,
+
+        action:
+            "LOGIN",
+
+        system:
+            "ECHO SYSTEM",
+
+        access:
+            result === "SUCCESS"
+                ? "GRANTED"
+                : "DENIED",
+
+        message:
+            result === "SUCCESS"
+                ? user + " successfully logged into ECHO SYSTEM"
+                : user + " failed ECHO SYSTEM authentication"
+
+    });
+
+
+    localStorage.setItem(
+        "echoSystemLogs",
+        JSON.stringify(logs)
+    );
+
+}
+
+
+/*
+=====================================
+SYSTEM ACCESS LOG
+=====================================
+*/
+
+function logAccess(systemName) {
+
+    const logs =
+        JSON.parse(
+            localStorage.getItem(
+                "echoSystemLogs"
+            ) || "[]"
+        );
+
+    const now =
+        new Date();
+
+    const user =
+        localStorage.getItem(
+            "currentUser"
+        ) || "UNKNOWN";
+
+
+    logs.push({
+
+        date:
+            now.toLocaleDateString("en-GB"),
+
+        time:
+            now.toLocaleTimeString("en-GB"),
+
+        type:
+            "ACCESS",
+
+        user:
+            user,
+
+        action:
+            "ACCESS",
+
+        system:
+            systemName,
+
+        access:
+            "GRANTED",
+
+        message:
+            user + " accessed " + systemName
+
+    });
+
+
+    localStorage.setItem(
+        "echoSystemLogs",
+        JSON.stringify(logs)
+    );
+
+}
+
+
+/*
+=====================================
+ENTER KEY
+=====================================
+*/
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                authenticate();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

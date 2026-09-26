@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VITALE // COMMUNICATIONS</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: #00ff66;
+            font-family: "Courier New", monospace;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .terminal {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header {
+            border-bottom: 1px solid #00ff66;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            color: #00aa44;
+            font-size: 14px;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .section-title {
+            color: #00ff66;
+            margin: 35px 0 15px 0;
+            font-size: 16px;
+        }
+
+        .communication {
+            border: 1px solid #005c2b;
+            background: #020202;
+            margin-bottom: 25px;
+            padding: 22px;
+        }
+
+        .communication:hover {
+            border-color: #00ff66;
+        }
+
+        .comm-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid #003d1d;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .comm-id {
+            color: #00ff66;
+            font-weight: bold;
+        }
+
+        .comm-status {
+            color: #008f3d;
+            font-size: 13px;
+        }
+
+        .info {
+            margin: 7px 0;
+            font-size: 14px;
+        }
+
+        .label {
+            color: #008f3d;
+        }
+
+        .message-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-left: 2px solid #00ff66;
+            background: #010101;
+        }
+
+        .message {
+            margin: 15px 0;
+            line-height: 1.7;
+        }
+
+        .sender {
+            color: #00ff66;
+            font-weight: bold;
+        }
+
+        .translation {
+            color: #777;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .encrypted {
+            color: #d6b84a;
+            letter-spacing: 1px;
+        }
+
+        .warning {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid #6b5200;
+            color: #d6b84a;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 18px;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #00ff66;
+            color: #000;
+        }
+
+        .footer {
+            margin-top: 35px;
+            padding-top: 15px;
+            border-top: 1px solid #003d1d;
+            color: #006b30;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           EDITOR
+        ========================= */
+
+        .editor-controls {
+            display: flex;
+            gap: 12px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .editor-button {
+            background: #020202;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 12px 18px;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        .editor-button:hover {
+            background: #00ff66;
+            color: #000;
+        }
+
+        .editor-panel {
+            display: none;
+            border: 1px solid #00ff66;
+            background: #020202;
+            padding: 22px;
+            margin-bottom: 30px;
+        }
+
+        .editor-panel.active {
+            display: block;
+        }
+
+        .editor-title {
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-row label {
+            display: block;
+            color: #008f3d;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .form-row input,
+        .form-row textarea,
+        .form-row select {
+            width: 100%;
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #005c2b;
+            padding: 11px;
+            font-family: "Courier New", monospace;
+            outline: none;
+        }
+
+        .form-row input:focus,
+        .form-row textarea:focus,
+        .form-row select:focus {
+            border-color: #00ff66;
+        }
+
+        .form-row textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .edit-tools {
+            display: none;
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #003d1d;
+        }
+
+        .editing .edit-tools {
+            display: block;
+        }
+
+        .tool-button {
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #005c2b;
+            padding: 8px 12px;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        .tool-button:hover {
+            border-color: #00ff66;
+            background: #00ff66;
+            color: #000;
+        }
+
+        .delete-button {
+            color: #d66;
+            border-color: #633;
+        }
+
+        .delete-button:hover {
+            background: #d66;
+            color: #000;
+        }
+
+        .message-editor {
+            margin-top: 15px;
+        }
+
+        .message-editor-item {
+            border: 1px solid #003d1d;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .message-editor-item input,
+        .message-editor-item textarea {
+            width: 100%;
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #005c2b;
+            padding: 8px;
+            font-family: "Courier New", monospace;
+            margin-bottom: 8px;
+        }
+
+        .remove-message {
+            color: #d66;
+            background: #000;
+            border: 1px solid #633;
+            padding: 6px 10px;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        .empty-message {
+            color: #008f3d;
+            padding: 20px 0;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="terminal">
+
+    <div class="header">
+
+        <div class="title">
+            VITALE // COMMUNICATIONS
+        </div>
+
+        <div class="subtitle">
+            GLOBAL ENCRYPTED COMMUNICATION NETWORK
+        </div>
+
+        <div class="status">
+            &gt; CONNECTION: SECURE<br>
+            &gt; DATABASE: ONLINE<br>
+            &gt; USER: <span id="currentUser">UNKNOWN</span><br>
+            &gt; ACCESS LEVEL: <span id="currentAccess">UNKNOWN</span>
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        // RECOVERED COMMUNICATIONS
+    </div>
+
+
+    <div class="editor-controls">
+
+        <button
+            class="editor-button"
+            onclick="toggleEditor()"
+        >
+            [ EDIT DATABASE ]
+        </button>
+
+        <button
+            class="editor-button"
+            onclick="newCommunication()"
+        >
+            [ + NEW COMMUNICATION ]
+        </button>
+
+    </div>
+
+
+    <div id="editorPanel" class="editor-panel">
+
+        <div class="editor-title">
+            // COMMUNICATION EDITOR
+        </div>
+
+        <input type="hidden" id="editingId">
+
+        <div class="form-row">
+
+            <label>COMMUNICATION ID</label>
+
+            <input
+                type="text"
+                id="commId"
+                placeholder="COMM-009"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label>STATUS</label>
+
+            <input
+                type="text"
+                id="commStatus"
+                placeholder="RECOVERED"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label>CONTACT</label>
+
+            <input
+                type="text"
+                id="commContact"
+                placeholder="CONTACT NAME"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label>LOCATION</label>
+
+            <input
+                type="text"
+                id="commLocation"
+                placeholder="LOCATION"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label>LANGUAGE</label>
+
+            <input
+                type="text"
+                id="commLanguage"
+                placeholder="ENGLISH"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <label>MESSAGES</label>
+
+            <div id="messageEditor"></div>
+
+        </div>
+
+
+        <div class="form-buttons">
+
+            <button
+                class="editor-button"
+                onclick="addMessageField()"
+            >
+                [ + ADD MESSAGE ]
+            </button>
+
+            <button
+                class="editor-button"
+                onclick="saveCommunication()"
+            >
+                [ SAVE COMMUNICATION ]
+            </button>
+
+            <button
+                class="editor-button"
+                onclick="closeEditor()"
+            >
+                [ CANCEL ]
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="communicationsContainer"></div>
+
+
+    <div class="warning">
+
+        [!] SECURITY WARNING<br><br>
+
+        SOME COMMUNICATIONS CONTAIN FOREIGN LANGUAGE,
+        ENCRYPTED DATA AND PARTIALLY RECOVERED INFORMATION.<br><br>
+
+        MESSAGE INTEGRITY: 61%<br>
+        ORIGINAL DATA: PARTIALLY LOST
+
+    </div>
+
+
+    <a href="index.html" class="back">
+        &lt;&lt; RETURN TO VITALE SYSTEM
+    </a>
+
+
+    <div class="footer">
+
+        VITALE // SECURE COMMUNICATION NETWORK<br>
+        ALL COMMUNICATIONS ARE LOGGED<br>
+        SUBJECT: 001 // K41T0
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const currentUser = localStorage.getItem("currentUser");
+    const currentAccess = localStorage.getItem("currentAccess");
+
+    if (!currentUser) {
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("currentUser").textContent =
+        currentUser || "UNKNOWN";
+
+    document.getElementById("currentAccess").textContent =
+        currentAccess || "UNKNOWN";
+
+
+    /* =====================================
+       ORIGINAL COMMUNICATIONS
+    ===================================== */
+
+    const originalCommunications = [
+
+        {
+            id: "COMM-001",
+            status: "RECOVERED",
+            contact: "NEREIDE",
+            location: "NAPOLI, ITALY",
+            language: "ITALIAN",
+
+            messages: [
+
+                {
+                    sender: "NEREIDE",
+                    text: "Hai ricevuto il segnale?"
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Sì. Ma non dove dovrebbe essere."
+                },
+
+                {
+                    sender: "NEREIDE",
+                    text: "Allora qualcuno lo ha spostato."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "O qualcuno vuole che pensiamo questo."
+                }
+
+            ]
+        },
+
+
+        {
+            id: "COMM-002",
+            status: "ENCRYPTED",
+            contact: "BLACKFOX",
+            location: "TOKYO, JAPAN",
+            language: "JAPANESE",
+
+            messages: [
+
+                {
+                    sender: "BLACKFOX",
+                    text: "海はすべてを覚えている。",
+                    translation: "[TRANSLATION: The sea remembers everything.]"
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "だから海を信じる。",
+                    translation: "[TRANSLATION: That's why I trust the sea.]"
+                },
+
+                {
+                    sender: "BLACKFOX",
+                    text: "君はまだ同じ名前を使っているのか？",
+                    translation: "[TRANSLATION: Are you still using the same name?]"
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "名前は変わっても、記憶は変わらない。",
+                    translation: "[TRANSLATION: Names can change. Memories don't.]"
+                }
+
+            ]
+        },
+
+
+        {
+            id: "COMM-003",
+            status: "PARTIALLY RECOVERED",
+            contact: "SPECTER",
+            location: "BUENOS AIRES, ARGENTINA",
+            language: "SPANISH",
+
+            messages: [
+
+                {
+                    sender: "SPECTER",
+                    text: "Tengo una parte del archivo."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "¿Qué parte?"
+                },
+
+                {
+                    sender: "SPECTER",
+                    text: "La que nunca debió existir."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Entonces no la abras."
+                },
+
+                {
+                    sender: "SPECTER",
+                    text: "Demasiado tarde."
+                }
+
+            ]
+        },
+
+
+        {
+            id: "COMM-004",
+            status: "CORRUPTED",
+            contact: "VOLKOV",
+            location: "SAINT PETERSBURG, RUSSIA",
+            language: "RUSSIAN",
+
+            messages: [
+
+                {
+                    sender: "VOLKOV",
+                    text: "Ты всё ещё ищешь их?",
+                    translation: "[TRANSLATION: Are you still looking for them?]"
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Я не ищу их.",
+                    translation: "[TRANSLATION: I'm not looking for them.]"
+                },
+
+                {
+                    sender: "VOLKOV",
+                    text: "Тогда кого?",
+                    translation: "[TRANSLATION: Then who?]"
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Правду.",
+                    translation: "[TRANSLATION: The truth.]"
+                }
+
+            ]
+        },
+
+
+        {
+            id: "COMM-005",
+            status: "RECOVERED",
+            contact: "ZERO",
+            location: "REYKJAVÍK, ICELAND",
+            language: "ENGLISH",
+
+            messages: [
+
+                {
+                    sender: "ZERO",
+                    text: "You disappeared for three years."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "I needed to."
+                },
+
+                {
+                    sender: "ZERO",
+                    text: "People thought you were dead."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Let them think."
+                },
+
+                {
+                    sender: "ZERO",
+                    text: "Someone found your old name."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Then we have a problem."
+                }
+
+            ]
+        },
+
+
+        {
+            id: "COMM-006",
+            status: "HIGHLY ENCRYPTED",
+            contact: "[UNKNOWN]",
+            location: "[UNKNOWN]",
+            language: "ENCRYPTED",
+
+            messages: [
+
+                {
+                    sender: "[UNKNOWN]",
+                    text: "You still remember the number?"
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "I never forgot it."
+                },
+
+                {
+                    sender: "[UNKNOWN]",
+                    text: "Then you know where this leads."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "006."
+                }
+
+            ],
+
+            encrypted:
+                "4B 41 31 37 30 // 53 45 41 // 4E 4F 54 // 44 45 41 44"
+
+        },
+
+
+        {
+            id: "COMM-007",
+            status: "RECOVERED",
+            contact: "MAREA",
+            location: "SÃO VICENTE DO NORTE",
+            language: "PORTUGUESE",
+
+            messages: [
+
+                {
+                    sender: "MAREA",
+                    text: "Você voltou."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Eu nunca deveria ter voltado."
+                },
+
+                {
+                    sender: "MAREA",
+                    text: "Mas voltou."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Preciso saber quem enviou o sinal."
+                },
+
+                {
+                    sender: "MAREA",
+                    text: "Talvez você já saiba."
+                }
+
+            ]
+        },
+
+
+        {
+            id: "COMM-008",
+            status: "DAMAGED",
+            contact: "[K-02]",
+            location: "[REDACTED]",
+            language: "MIXED",
+
+            messages: [
+
+                {
+                    sender: "[K-02]",
+                    text: "Il progetto non è finito."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "Lo so."
+                },
+
+                {
+                    sender: "[K-02]",
+                    text: "They are still searching."
+                },
+
+                {
+                    sender: "K41T0",
+                    text: "I know."
+                },
+
+                {
+                    sender: "[K-02]",
+                    text: "[MESSAGE FRAGMENT LOST]",
+                    encrypted: true
+                }
+
+            ]
+        }
+
+    ];
+
+
+    /* =====================================
+       LOCAL STORAGE
+    ===================================== */
+
+    let communications =
+        JSON.parse(
+            localStorage.getItem("kaitoCommunications")
+        );
+
+
+    if (!communications) {
+
+        communications =
+            originalCommunications;
+
+        saveDatabase();
+
+    }
+
+
+    function saveDatabase() {
+
+        localStorage.setItem(
+            "kaitoCommunications",
+            JSON.stringify(communications)
+        );
+
+    }
+
+
+    /* =====================================
+       DISPLAY
+    ===================================== */
+
+    function renderCommunications() {
+
+        const container =
+            document.getElementById(
+                "communicationsContainer"
+            );
+
+        container.innerHTML = "";
+
+
+        if (communications.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty-message">[ NO COMMUNICATIONS FOUND ]</div>';
+
+            return;
+
+        }
+
+
+        communications.forEach(
+            (comm, index) => {
+
+                const box =
+                    document.createElement("div");
+
+                box.className =
+                    "communication";
+
+
+                let messagesHTML = "";
+
+
+                if (comm.encrypted) {
+
+                    messagesHTML += `
+                        <div class="message encrypted">
+                            ${escapeHTML(comm.encrypted)}
+                        </div>
+                    `;
+
+                }
+
+
+                comm.messages.forEach(
+                    message => {
+
+                        messagesHTML += `
+                            <div class="message">
+
+                                <span class="sender">
+                                    ${escapeHTML(message.sender)}:
+                                </span>
+                                <br>
+
+                                ${escapeHTML(message.text)}
+
+                            </div>
+                        `;
+
+
+                        if (message.translation) {
+
+                            messagesHTML += `
+                                <div class="translation">
+                                    ${escapeHTML(message.translation)}
+                                </div>
+                            `;
+
+                        }
+
+                    }
+                );
+
+
+                box.innerHTML = `
+
+                    <div class="comm-header">
+
+                        <div class="comm-id">
+                            [${escapeHTML(comm.id)}]
+                        </div>
+
+                        <div class="comm-status">
+                            STATUS: ${escapeHTML(comm.status)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info">
+                        <span class="label">CONTACT:</span>
+                        ${escapeHTML(comm.contact)}
+                    </div>
+
+
+                    <div class="info">
+                        <span class="label">LOCATION:</span>
+                        ${escapeHTML(comm.location)}
+                    </div>
+
+
+                    <div class="info">
+                        <span class="label">LANGUAGE:</span>
+                        ${escapeHTML(comm.language)}
+                    </div>
+
+
+                    <div class="message-box">
+
+                        ${messagesHTML}
+
+                    </div>
+
+
+                    <div class="edit-tools">
+
+                        <button
+                            class="tool-button"
+                            onclick="editCommunication(${index})"
+                        >
+                            [ EDIT ]
+                        </button>
+
+                        <button
+                            class="tool-button delete-button"
+                            onclick="deleteCommunication(${index})"
+                        >
+                            [ DELETE ]
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(box);
+
+            }
+        );
+
+    }
+
+
+    /* =====================================
+       EDITOR
+    ===================================== */
+
+    function toggleEditor() {
+
+        const panel =
+            document.getElementById(
+                "editorPanel"
+            );
+
+        panel.classList.toggle("active");
+
+
+        document.body.classList.toggle(
+            "editing"
+        );
+
+    }
+
+
+    function newCommunication() {
+
+        clearEditor();
+
+        document.getElementById(
+            "editorPanel"
+        ).classList.add("active");
+
+
+        document.body.classList.add(
+            "editing"
+        );
+
+        addMessageField();
+
+    }
+
+
+    function closeEditor() {
+
+        document.getElementById(
+            "editorPanel"
+        ).classList.remove("active");
+
+
+        document.body.classList.remove(
+            "editing"
+        );
+
+        clearEditor();
+
+    }
+
+
+    function clearEditor() {
+
+        document.getElementById(
+            "editingId"
+        ).value = "";
+
+        document.getElementById(
+            "commId"
+        ).value = "";
+
+        document.getElementById(
+            "commStatus"
+        ).value = "";
+
+        document.getElementById(
+            "commContact"
+        ).value = "";
+
+        document.getElementById(
+            "commLocation"
+        ).value = "";
+
+        document.getElementById(
+            "commLanguage"
+        ).value = "";
+
+        document.getElementById(
+            "messageEditor"
+        ).innerHTML = "";
+
+    }
+
+
+    function addMessageField(
+        sender = "",
+        text = "",
+        translation = ""
+    ) {
+
+        const container =
+            document.getElementById(
+                "messageEditor"
+            );
+
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+        item.className =
+            "message-editor-item";
+
+
+        item.innerHTML = `
+
+            <input
+                type="text"
+                class="message-sender"
+                placeholder="SENDER"
+                value="${escapeAttribute(sender)}"
+            >
+
+            <textarea
+                class="message-text"
+                placeholder="MESSAGE"
+            >${escapeHTML(text)}</textarea>
+
+            <input
+                type="text"
+                class="message-translation"
+                placeholder="TRANSLATION (optional)"
+                value="${escapeAttribute(translation)}"
+            >
+
+            <button
+                class="remove-message"
+                onclick="this.parentElement.remove()"
+            >
+                [ REMOVE MESSAGE ]
+            </button>
+
+        `;
+
+
+        container.appendChild(item);
+
+    }
+
+
+    function editCommunication(index) {
+
+        const comm =
+            communications[index];
+
+
+        document.getElementById(
+            "editingId"
+        ).value = index;
+
+
+        document.getElementById(
+            "commId"
+        ).value = comm.id;
+
+
+        document.getElementById(
+            "commStatus"
+        ).value = comm.status;
+
+
+        document.getElementById(
+            "commContact"
+        ).value = comm.contact;
+
+
+        document.getElementById(
+            "commLocation"
+        ).value = comm.location;
+
+
+        document.getElementById(
+            "commLanguage"
+        ).value = comm.language;
+
+
+        const messageEditor =
+            document.getElementById(
+                "messageEditor"
+            );
+
+
+        messageEditor.innerHTML = "";
+
+
+        comm.messages.forEach(
+            message => {
+
+                addMessageField(
+                    message.sender,
+                    message.text,
+                    message.translation || ""
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "editorPanel"
+        ).classList.add("active");
+
+
+        document.body.classList.add(
+            "editing"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function saveCommunication() {
+
+        const id =
+            document.getElementById(
+                "editingId"
+            ).value;
+
+
+        const comm = {
+
+            id:
+                document.getElementById(
+                    "commId"
+                ).value.trim(),
+
+            status:
+                document.getElementById(
+                    "commStatus"
+                ).value.trim(),
+
+            contact:
+                document.getElementById(
+                    "commContact"
+                ).value.trim(),
+
+            location:
+                document.getElementById(
+                    "commLocation"
+                ).value.trim(),
+
+            language:
+                document.getElementById(
+                    "commLanguage"
+                ).value.trim(),
+
+            messages: []
+
+        };
+
+
+        const messageItems =
+            document.querySelectorAll(
+                ".message-editor-item"
+            );
+
+
+        messageItems.forEach(
+            item => {
+
+                const sender =
+                    item.querySelector(
+                        ".message-sender"
+                    ).value.trim();
+
+                const text =
+                    item.querySelector(
+                        ".message-text"
+                    ).value.trim();
+
+                const translation =
+                    item.querySelector(
+                        ".message-translation"
+                    ).value.trim();
+
+
+                if (sender || text) {
+
+                    const message = {
+                        sender: sender,
+                        text: text
+                    };
+
+
+                    if (translation) {
+
+                        message.translation =
+                            translation;
+
+                    }
+
+
+                    comm.messages.push(
+                        message
+                    );
+
+                }
+
+            }
+        );
+
+
+        if (!comm.id) {
+
+            alert(
+                "COMMUNICATION ID IS REQUIRED."
+            );
+
+            return;
+
+        }
+
+
+        if (id === "") {
+
+            communications.push(comm);
+
+        } else {
+
+            communications[
+                Number(id)
+            ] = comm;
+
+        }
+
+
+        saveDatabase();
+
+        renderCommunications();
+
+        closeEditor();
+
+    }
+
+
+    function deleteCommunication(index) {
+
+        const confirmed =
+            confirm(
+                "DELETE THIS COMMUNICATION?"
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        communications.splice(
+            index,
+            1
+        );
+
+
+        saveDatabase();
+
+        renderCommunications();
+
+    }
+
+
+    /* =====================================
+       SECURITY
+    ===================================== */
+
+    function escapeHTML(text) {
+
+        return String(text || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    function escapeAttribute(text) {
+
+        return escapeHTML(text);
+
+    }
+
+
+    /* =====================================
+       START
+    ===================================== */
+
+    renderCommunications();
+
+</script>
+
+</body>
+
+</html>

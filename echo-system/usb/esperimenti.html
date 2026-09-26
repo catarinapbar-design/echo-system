@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>VITALE // ESPERIMENTI</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    padding: 40px;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.file {
+    border: 1px solid #477;
+    padding: 18px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.file:hover {
+    border-color: #00ff66;
+}
+
+.dim {
+    color: #477;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    margin-top: 30px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div>VITALE // ESPERIMENTI</div>
+
+<div class="dim">
+------------------------------------------
+</div>
+
+<br>
+
+<div>> REGISTRO DEGLI ESPERIMENTI</div>
+<div>> ACCESSO AUTORIZZATO</div>
+
+<br>
+
+<div class="file" onclick="openFile('test01')">
+    📄 TEST_001 // ADATTAMENTO
+</div>
+
+<div class="file" onclick="openFile('test02')">
+    📄 TEST_002 // MEMORIA
+</div>
+
+<div class="file" onclick="openFile('test03')">
+    📄 TEST_003 // RISPOSTA
+</div>
+
+
+<div id="test01" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // TEST_001</div>
+
+    <br>
+
+    <div>SOGGETTO: 006</div>
+    <div>LOCALITÀ: VALDOMBRA</div>
+    <div>STATO: COMPLETATO</div>
+
+    <br>
+
+    <div>
+        Il soggetto ha mostrato una notevole capacità
+        di adattamento alle condizioni previste.
+    </div>
+
+    <br>
+
+    <div class="dim">
+        RISULTATO: POSITIVO
+    </div>
+
+</div>
+
+
+<div id="test02" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // TEST_002</div>
+
+    <br>
+
+    <div>SOGGETTO: 006</div>
+    <div>LOCALITÀ: VALDOMBRA</div>
+    <div>STATO: COMPLETATO</div>
+
+    <br>
+
+    <div>
+        Alcuni ricordi precedenti mostrano
+        interferenze durante il processo.
+    </div>
+
+    <div>
+        Il nome "Kaito" rimane associato
+        a una risposta stabile.
+    </div>
+
+    <br>
+
+    <div class="dim">
+        RISULTATO: OSSERVAZIONE CONTINUA
+    </div>
+
+</div>
+
+
+<div id="test03" class="hidden">
+
+    <br>
+
+    <div class="dim">FILE // TEST_003</div>
+
+    <br>
+
+    <div>SOGGETTO: 006</div>
+    <div>LOCALITÀ: VALDOMBRA</div>
+    <div>STATO: CLASSIFICATO</div>
+
+    <br>
+
+    <div>
+        Il soggetto ha riconosciuto il simbolo
+        del mare senza istruzioni precedenti.
+    </div>
+
+    <br>
+
+    <div>
+        NOTA:
+    </div>
+
+    <div class="dim">
+        "Non dimentica ciò che il mare gli ha insegnato."
+    </div>
+
+    <br>
+
+    <div class="dim">
+        RISULTATO: ARCHIVIATO
+    </div>
+
+</div>
+
+
+<div class="back" onclick="window.location.href='archive006.html'">
+    &lt; TORNA ALL'ARCHIVIO
+</div>
+
+</div>
+
+<script>
+
+function openFile(file) {
+    document.getElementById(file).classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>

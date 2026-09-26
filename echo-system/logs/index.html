@@ -1,0 +1,452 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ECHO // SYSTEM LOG</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: #050505;
+
+    color: #39ff88;
+
+    font-family: "Courier New", monospace;
+
+    padding: 30px;
+
+}
+
+.terminal {
+
+    width: 1100px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    background: #070707;
+
+    border: 1px solid #39ff88;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.30),
+        0 0 45px rgba(57,255,136,.08);
+
+}
+
+.header {
+
+    padding: 22px 28px;
+
+    border-bottom: 1px solid #39ff88;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 8px #39ff88,
+        0 0 20px rgba(57,255,136,.5);
+
+}
+
+.content {
+
+    padding: 32px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+.status {
+
+    margin-bottom: 25px;
+
+    padding: 18px;
+
+    border-left: 1px solid #39ff88;
+
+    background: rgba(57,255,136,.025);
+
+}
+
+.status p {
+
+    margin: 4px 0;
+
+}
+
+.log-entry {
+
+    margin: 16px 0;
+
+    padding: 16px 18px;
+
+    border: 1px solid rgba(57,255,136,.45);
+
+    background: rgba(57,255,136,.02);
+
+}
+
+.log-entry:hover {
+
+    border-color: #39ff88;
+
+    box-shadow:
+        0 0 12px rgba(57,255,136,.15);
+
+}
+
+.log-time {
+
+    color: #ffffff;
+
+    margin-bottom: 7px;
+
+}
+
+.log-line {
+
+    margin: 3px 0;
+
+}
+
+.success {
+
+    color: #39ff88;
+
+}
+
+.failed {
+
+    color: #ff5555;
+
+}
+
+.empty {
+
+    padding: 25px;
+
+    border: 1px dashed #39ff88;
+
+    color: #8cffb8;
+
+}
+
+.buttons {
+
+    margin-top: 30px;
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+.button {
+
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    border: 1px solid #39ff88;
+
+    color: #39ff88;
+
+    text-decoration: none;
+
+    background: #050505;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+}
+
+.button:hover {
+
+    color: #ffffff;
+
+    background: rgba(57,255,136,.08);
+
+    box-shadow:
+        0 0 15px rgba(57,255,136,.35);
+
+}
+
+.danger:hover {
+
+    color: #ff5555;
+
+    border-color: #ff5555;
+
+    box-shadow:
+        0 0 15px rgba(255,85,85,.25);
+
+}
+
+.footer {
+
+    margin-top: 30px;
+
+    color: #6effa5;
+
+}
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    .header {
+
+        font-size: 20px;
+
+        padding: 18px;
+
+    }
+
+    .content {
+
+        padding: 20px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="header">
+        ECHO // SYSTEM LOG
+    </div>
+
+    <div class="content">
+
+        <div class="status">
+
+            <p>
+                &gt; SYSTEM LOG ONLINE
+            </p>
+
+            <p>
+                &gt; DATABASE: echoSystemLogs
+            </p>
+
+            <p id="logCount">
+                &gt; RECORDS: 0
+            </p>
+
+            <p>
+                &gt; MONITORING: ACTIVE
+            </p>
+
+        </div>
+
+
+        <div id="logs"></div>
+
+
+        <div class="buttons">
+
+            <button
+                class="button danger"
+                onclick="clearLogs()"
+            >
+                [ CLEAR SYSTEM LOG ]
+            </button>
+
+            <a
+                class="button"
+                href="../index.html"
+            >
+                [ BACK TO ROOT SYSTEM ]
+            </a>
+
+        </div>
+
+
+        <div class="footer">
+
+            &gt; ECHO // ACTIVITY MONITOR<br>
+
+            &gt; ALL SYSTEM ACCESS ATTEMPTS ARE RECORDED.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function loadLogs() {
+
+    const logsContainer =
+        document.getElementById("logs");
+
+    const logCount =
+        document.getElementById("logCount");
+
+
+    const logs =
+        JSON.parse(
+            localStorage.getItem("echoSystemLogs") || "[]"
+        );
+
+
+    logCount.textContent =
+        "> RECORDS: " + logs.length;
+
+
+    logsContainer.innerHTML = "";
+
+
+    if (logs.length === 0) {
+
+        logsContainer.innerHTML =
+
+            '<div class="empty">' +
+            '&gt; NO SYSTEM ACTIVITY RECORDED.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    /*
+    Most recent activity first
+    */
+
+    const reversedLogs =
+        [...logs].reverse();
+
+
+    reversedLogs.forEach(function(log) {
+
+        const entry =
+            document.createElement("div");
+
+        entry.className =
+            "log-entry";
+
+
+        const resultClass =
+            log.type === "FAILED"
+                ? "failed"
+                : "success";
+
+
+        entry.innerHTML =
+
+            '<div class="log-time">' +
+            '[' + (log.date || "--") +
+            ' ' +
+            (log.time || "--") +
+            ']' +
+            '</div>' +
+
+            '<p class="log-line">&gt; USER: ' +
+            (log.user || "UNKNOWN") +
+            '</p>' +
+
+            '<p class="log-line">&gt; ACTION: ' +
+            (log.action || "UNKNOWN") +
+            '</p>' +
+
+            '<p class="log-line">&gt; SYSTEM: ' +
+            (log.system || "UNKNOWN") +
+            '</p>' +
+
+            '<p class="log-line">&gt; STATUS: ' +
+            '<span class="' +
+            resultClass +
+            '">' +
+            (log.access || log.type || "UNKNOWN") +
+            '</span>' +
+            '</p>' +
+
+            '<p class="log-line">&gt; MESSAGE: ' +
+            (log.message || "NO MESSAGE") +
+            '</p>';
+
+
+        logsContainer.appendChild(entry);
+
+    });
+
+}
+
+
+function clearLogs() {
+
+    const confirmed =
+        confirm(
+            "CLEAR ALL SYSTEM LOGS?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "echoSystemLogs"
+    );
+
+
+    loadLogs();
+
+}
+
+
+loadLogs();
+
+</script>
+
+</body>
+
+</html>
+```

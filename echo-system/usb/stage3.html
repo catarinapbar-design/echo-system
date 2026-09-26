@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>VITALE // ACCESSO FINALE</title>
+
+    <style>
+        body {
+            background: #000;
+            color: #00ff66;
+            font-family: "Courier New", monospace;
+            padding: 40px;
+        }
+
+        .terminal {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .line {
+            margin: 14px 0;
+        }
+
+        .dim {
+            color: #477;
+        }
+
+        input {
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #00ff66;
+            padding: 12px;
+            width: 300px;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            background: #000;
+            color: #00ff66;
+            border: 1px solid #00ff66;
+            padding: 12px 20px;
+            margin-left: 8px;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #00ff66;
+            color: #000;
+        }
+
+        #result {
+            margin-top: 25px;
+            white-space: pre-line;
+        }
+
+        #archiveButton {
+            display: none;
+            margin-top: 20px;
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="line">VITALE // CANALE SICURO</div>
+
+    <div class="line dim">
+        ------------------------------------------
+    </div>
+
+    <div class="line">> LIVELLO DI SICUREZZA FINALE</div>
+    <div class="line">> TRASMISSIONE ARCHIVIATA RILEVATA</div>
+
+    <br>
+
+    <div class="line">
+        "Il mare non dimentica<br>
+        chi ha imparato a navigarlo."
+    </div>
+
+    <br>
+
+    <div class="line dim">ARCHIVIO // 006</div>
+
+    <div class="line">
+        Il mare ricorda.<br>
+        Il marinaio ricorda il mare.
+    </div>
+
+    <div class="line">
+        Alcuni nomi non sono nomi.<br>
+        Alcune canzoni non sono soltanto canzoni.
+    </div>
+
+    <br>
+
+    <div class="line">
+        FILE AUDIO RECUPERATO
+    </div>
+
+    <div class="line dim">
+        ITALIA // MARE // VECCHIA CANZONE
+    </div>
+
+    <br>
+
+    <div class="line">
+        > INSERISCI LA CHIAVE:
+    </div>
+
+    <input type="text" id="password" autocomplete="off">
+
+    <button onclick="checkPassword()">ACCESSO</button>
+
+    <div id="result"></div>
+
+    <button id="archiveButton" onclick="openArchive()">
+        [ APRI ARCHIVIO ]
+    </button>
+
+</div>
+
+<script>
+
+function checkPassword() {
+
+    const password = document
+        .getElementById("password")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const result = document.getElementById("result");
+    const archiveButton = document.getElementById("archiveButton");
+
+    archiveButton.style.display = "none";
+
+    if (password === "MARENARIELLO006") {
+
+        result.innerText =
+`> ACCESSO CONSENTITO
+
+> IDENTITÀ CONFERMATA
+
+> ARCHIVIO 006 SBLOCCATO
+
+> BENTORNATO, KAITO.`;
+
+        archiveButton.style.display = "block";
+
+    } else {
+
+        result.innerText =
+`> ACCESSO NEGATO
+
+> IL MARE NON TI RICONOSCE.`;
+
+    }
+}
+
+function openArchive() {
+    window.location.href = "archive006.html";
+}
+
+</script>
+
+</body>
+</html>
